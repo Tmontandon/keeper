@@ -1,0 +1,70 @@
+{
+  "folders": [
+    {
+      "path": "keeper.client",
+      "name": "client"
+    },
+    {
+      "path": "keeper",
+      "name": "server"
+    },
+    {
+      "path": ".github/workflows",
+      "name": "workflows"
+    }
+  ],
+  "settings": {
+    "editor.suggestSelection": "first",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "javascript.referencesCodeLens.enabled": true,
+    "javascript.referencesCodeLens.showOnAllFunctions": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.referencesCodeLens.showOnAllFunctions": true,
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "files.exclude": {
+      "**/.nyc_*": true,
+      "**/coverage": true,
+      "**/node_modules": true
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDragAndDrop": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+    "eslint.codeActionsOnSave.mode": "all",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+    "files.associations": {
+      "*.vue": "vue"
+    },
+    "[vue]": {
+      "editor.defaultFormatter": "Vue.volar"
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#7c7051",
+      "activityBar.background": "#7c7051",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#8bb3a8",
+      "activityBarBadge.foreground": "#15202b",
+      "panel.border": "#7c7051",
+      "sash.hoverBorder": "#7c7051",
+      "sideBar.border": "#7c7051",
+      "statusBar.background": "#5d543d",
+      "statusBar.border": "#5d543d",
+      "statusBar.debuggingBackground": "#3d465d",
+      "statusBar.debuggingBorder": "#3d465d",
+      "statusBar.debuggingForeground": "#e7e7e7",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#7c7051",
+      "statusBarItem.remoteBackground": "#5d543d",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "tab.activeBorder": "#7c7051"
+    },
+    "peacock.color": "#5d543d"
+  }
+}
