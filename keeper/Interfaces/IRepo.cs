@@ -1,6 +1,6 @@
 namespace keeper.Interfaces;
 
-public interface IRepository<T, Tid>
+public interface IRepo<T, Tid>
 {
   List<T> Get();
 

@@ -26,6 +26,19 @@ public class VaultsController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+  [HttpGet("{id}")]
+  public ActionResult<Vault> GetVaultById(int id)
+  {
+    try
+    {
+      Vault vault = _vs.GetVaultById(id);
+      return vault;
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 
 
   [HttpPost]
@@ -35,7 +48,8 @@ public class VaultsController : ControllerBase
     try
     {
       Account userInfo = await _au.GetUserInfoAsync<Account>(HttpContext);
-      Vault v = _vs.PostVault();
+      vData.CreatorId = userInfo.Id;
+      Vault v = _vs.PostVault(vData);
       return Ok(v);
     }
     catch (Exception e)
@@ -44,4 +58,21 @@ public class VaultsController : ControllerBase
     }
   }
 
+
+  [HttpPut("{id}")]
+  [Authorize]
+  public async Task<ActionResult<Vault>> EditVault([FromBody] Vault vData, int id)
+  {
+    try
+    {
+      Account userInfo = await _au.GetUserInfoAsync<Account>(HttpContext);
+      vData.CreatorId = userInfo.Id;
+      Vault newV = _vs.EditVault(vData, id);
+      return Ok(newV);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 }
