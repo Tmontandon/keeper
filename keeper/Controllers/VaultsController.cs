@@ -4,12 +4,22 @@ namespace keeper.Controllers;
 [Route("api/[controller]")]
 public class VaultsController : ControllerBase
 {
+  private readonly VaultsService _vs;
+  private readonly Auth0Provider _au;
+
+  public VaultsController(VaultsService vs, Auth0Provider au)
+  {
+    _vs = vs;
+    _au = au;
+  }
+
   [HttpGet]
-  public ActionResult<List<string>> Get()
+  public ActionResult<List<Vault>> GetAllVaults()
   {
     try
     {
-      return Ok(new List<string>() { "Value 1", "Value 2" });
+      List<Vault> vaults = _vs.GetAllVaults();
+      return vaults;
     }
     catch (Exception e)
     {
@@ -19,11 +29,14 @@ public class VaultsController : ControllerBase
 
 
   [HttpPost]
-  public ActionResult<List<string>> Create([FromBody] string value)
+  [Authorize]
+  public async Task<ActionResult<Vault>> PostVault([FromBody] Vault vData)
   {
     try
     {
-      return Ok(value);
+      Account userInfo = await _au.GetUserInfoAsync<Account>(HttpContext);
+      Vault v = _vs.PostVault();
+      return Ok(v);
     }
     catch (Exception e)
     {
