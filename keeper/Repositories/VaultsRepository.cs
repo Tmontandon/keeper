@@ -54,6 +54,12 @@ public class VaultsRepository
     return v;
   }
 
-
+  internal void DeleteVault(int id)
+  {
+    string sql = @"
+    Delete From vaults v Where v.id = @id Limit 1
+    ";
+    _db.Execute(sql, new { id });
+  }
 }
 

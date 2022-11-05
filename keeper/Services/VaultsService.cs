@@ -43,5 +43,15 @@ public class VaultsService
 
     return _vr.EditVault(v);
   }
+
+  internal void DeleteVault(int id, string creatorId)
+  {
+    Vault v = GetVaultById(id);
+    if (v.CreatorId != creatorId)
+    {
+      throw new Exception("You cant delet something you havent made >:( ");
+    }
+    _vr.DeleteVault(id);
+  }
 }
 

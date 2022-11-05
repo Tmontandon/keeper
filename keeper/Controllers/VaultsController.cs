@@ -6,12 +6,12 @@ public class VaultsController : ControllerBase
 {
   private readonly VaultsService _vs;
   private readonly Auth0Provider _au;
-
   public VaultsController(VaultsService vs, Auth0Provider au)
   {
     _vs = vs;
     _au = au;
   }
+
 
   [HttpGet]
   public ActionResult<List<Vault>> GetAllVaults()
@@ -26,6 +26,7 @@ public class VaultsController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
   [HttpGet("{id}")]
   public ActionResult<Vault> GetVaultById(int id)
   {
@@ -39,7 +40,6 @@ public class VaultsController : ControllerBase
       return BadRequest(e.Message);
     }
   }
-
 
   [HttpPost]
   [Authorize]
@@ -58,7 +58,6 @@ public class VaultsController : ControllerBase
     }
   }
 
-
   [HttpPut("{id}")]
   [Authorize]
   public async Task<ActionResult<Vault>> EditVault([FromBody] Vault vData, int id)
@@ -69,6 +68,23 @@ public class VaultsController : ControllerBase
       vData.CreatorId = userInfo.Id;
       Vault newV = _vs.EditVault(vData, id);
       return Ok(newV);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [HttpDelete("{id}")]
+  [Authorize]
+  public async Task<ActionResult<string>> DeleteVault(int id)
+  {
+    try
+    {
+      Account userInfo = await _au.GetUserInfoAsync<Account>(HttpContext);
+      string CreatorId = userInfo.Id;
+      _vs.DeleteVault(id, CreatorId);
+      return Ok("Delete Successful");
     }
     catch (Exception e)
     {
