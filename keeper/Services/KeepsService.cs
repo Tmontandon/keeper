@@ -11,8 +11,7 @@ public class KeepsService
 
   internal List<Keep> GetAllKeeps()
   {
-    List<Keep> keeps = _kRepo.GetAllKeeps();
-    return keeps;
+    throw new NotImplementedException();
   }
 
   internal Keep PostKeep(Keep keepData)

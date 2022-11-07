@@ -21,18 +21,7 @@ public class KeepsRepository
     return keepData;
   }
 
-  internal List<Keep> GetAllKeeps()
-  {
-    string sql = @"
-    select k.*, a.* from keeps k
-    join accounts a on a.id = k.creatorId;
-    ";
-    return _db.Query<Keep, Profile, Keep>(sql, (k, a) =>
-    {
-      k.Creator = a;
-      return k;
-    }).ToList();
-  }
+
 
   internal Keep EditKeep(Keep keepData)
   {

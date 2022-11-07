@@ -52,7 +52,7 @@ public class VaultKeepsRepository
     // NOTE I think it wanted the array returned to just be keeps
     string sql = @"
     Select vk.*, k.* from vaultKeeps vk
-    Left Join keeps k On k.id = vk.keepId
+    Join keeps k On k.id = vk.keepId
     Where vk.vaultId = @id;";
     return _db.Query<VaultKeep, Keep, VaultKeep>(sql, (vk, k) =>
     {
@@ -61,3 +61,13 @@ public class VaultKeepsRepository
     }, new { id }).ToList();
   }
 }
+
+// string sql = @"
+//     Select vk.*, k.* from vaultKeeps vk
+//     Join keeps k On k.id = vk.keepId
+//     Where vk.vaultId = @id;";
+//     return _db.Query<VaultKeep, Keep, VaultKeep>(sql, (vk, k) =>
+//     {
+//       vk.Keep = k;
+//       return vk;
+//     }, new { id }).ToList();
