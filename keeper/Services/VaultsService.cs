@@ -49,7 +49,7 @@ public class VaultsService
     Vault v = GetVaultById(id);
     if (v.CreatorId != creatorId)
     {
-      throw new Exception("You cant delet something you havent made >:( ");
+      throw new Exception("You cant delete something you haven't made >:( ");
     }
     _vr.DeleteVault(id);
   }
