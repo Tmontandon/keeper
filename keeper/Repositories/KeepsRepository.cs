@@ -64,7 +64,17 @@ public class KeepsRepository
 
   internal List<Keep> GetAllKeeps()
   {
-
+    string sql = @"
+    Select k.*, a.* from keeps k
+    join accounts a on a.id = k.creatorId
+    ";
+    return _db.Query<Keep, Profile, Keep>(sql, (k, a) =>
+    {
+      k.Creator = a;
+      k.CreatorId = a.Id;
+      return k;
+    }
+    ).ToList();
   }
 
 }
