@@ -30,4 +30,19 @@ public class VaultKeepsController : ControllerBase
     }
   }
 
+  [HttpDelete("{Id}")]
+  public async Task<ActionResult<string>> DeleteVK(int Id)
+  {
+    try
+    {
+      Account userInfo = await _au.GetUserInfoAsync<Account>(HttpContext);
+      string CreatorId = userInfo.Id;
+      _vks.DeleteVK(Id, CreatorId);
+      return Ok("Delete Successful");
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 }

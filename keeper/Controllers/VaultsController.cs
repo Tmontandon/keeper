@@ -5,13 +5,15 @@ namespace keeper.Controllers;
 public class VaultsController : ControllerBase
 {
   private readonly VaultsService _vs;
+  private readonly VaultKeepsService _vks;
   private readonly Auth0Provider _au;
-  public VaultsController(VaultsService vs, Auth0Provider au)
+
+  public VaultsController(VaultsService vs, VaultKeepsService vks, Auth0Provider au)
   {
     _vs = vs;
+    _vks = vks;
     _au = au;
   }
-
 
   [HttpGet]
   public ActionResult<List<Vault>> GetAllVaults()
@@ -34,6 +36,21 @@ public class VaultsController : ControllerBase
     {
       Vault vault = _vs.GetVaultById(id);
       return vault;
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+
+  [HttpGet("{id}/keeps")]
+  public ActionResult<List<VaultKeep>> GetVksByVaultId(int id)
+  {
+    try
+    {
+      List<VaultKeep> keeps = _vks.GetKsByVId(id);
+      return keeps;
     }
     catch (Exception e)
     {
@@ -91,4 +108,8 @@ public class VaultsController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+
+
+
 }
