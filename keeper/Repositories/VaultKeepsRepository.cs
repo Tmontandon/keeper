@@ -46,28 +46,43 @@ public class VaultKeepsRepository
     _db.Execute(sql, new { id });
   }
 
-  internal List<VaultKeep> GetKsByVId(int id)
+  internal List<VaultedKeep> GetKsByVId(int id)
   {
-    // TODO populate creator, check if I want to select from vault keep table, see if I want to swap up my model from vks
-    // NOTE I think it wanted the array returned to just be keeps
+    //  TODO Ask if order of select statement (other than k and a) matters (namely Count, and As statements)
     string sql = @"
-    Select vk.*, k.* from vaultKeeps vk
+    Select
+    k.*,
+    Count(vk.id) As Kept,
+    vk.id As VaultKeepId,
+    vk.vaultId As VaultId,
+    a.*
+    From vaultKeeps vk
     Join keeps k On k.id = vk.keepId
-    Where vk.vaultId = @id;";
-    return _db.Query<VaultKeep, Keep, VaultKeep>(sql, (vk, k) =>
+    Join accounts a On a.id = k.creatorId
+    Where vk.vaultId = @id
+    Group By vk.id
+    ";
+
+    return _db.Query<VaultedKeep, Profile, VaultedKeep>(sql, (Vk, P) =>
     {
-      vk.Keep = k;
-      return vk;
+      Vk.Creator = P;
+      Vk.CreatorId = P.Id;
+      return Vk;
     }, new { id }).ToList();
   }
 }
 
+
+// TODO Figure out why having the keep, and creator of the keep populated onto the vaultKeep is wrong
 // string sql = @"
-//     Select vk.*, k.* from vaultKeeps vk
-//     Join keeps k On k.id = vk.keepId
-//     Where vk.vaultId = @id;";
-//     return _db.Query<VaultKeep, Keep, VaultKeep>(sql, (vk, k) =>
-//     {
-//       vk.Keep = k;
-//       return vk;
-//     }, new { id }).ToList();
+// Select
+// vk.*, 
+// k.* 
+// From vaultKeeps vk
+// Join keeps k On k.id = vk.keepId
+// Where vk.vaultId = @id;";
+// return _db.Query<VaultKeep, Keep, VaultKeep>(sql, (vk, k) =>
+// {
+//   vk.Keep = k;
+//   return vk;
+// }, new { id }).ToList();

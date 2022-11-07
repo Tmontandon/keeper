@@ -35,7 +35,7 @@ public class VaultKeepsService
     _vkr.DeleteVK(id);
   }
 
-  internal List<VaultKeep> GetKsByVId(int id)
+  internal List<VaultedKeep> GetKsByVId(int id)
   {
     return _vkr.GetKsByVId(id);
   }

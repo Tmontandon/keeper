@@ -21,8 +21,6 @@ public class KeepsRepository
     return keepData;
   }
 
-
-
   internal Keep EditKeep(Keep keepData)
   {
     string sql = @"
@@ -63,4 +61,10 @@ public class KeepsRepository
       return k;
     }, new { id }).FirstOrDefault();
   }
+
+  internal List<Keep> GetAllKeeps()
+  {
+
+  }
+
 }
