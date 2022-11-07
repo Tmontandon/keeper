@@ -18,6 +18,9 @@
       </ul>
     </div>
 
+    <!-- MODALS -->
+    <CreateKeepModal />
+    <CreateVaultModal />
   </div>
 </template>
 
