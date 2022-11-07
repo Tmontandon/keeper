@@ -9,6 +9,8 @@ public class VaultKeepsRepository
     _db = db;
   }
 
+
+
   internal VaultKeep GetKByVKId(int id)
   {
     string sql = @"
@@ -21,7 +23,6 @@ public class VaultKeepsRepository
       return vk;
     }, new { id }).FirstOrDefault();
   }
-
 
   internal VaultKeep PostVK(VaultKeep vkData)
   {
@@ -74,6 +75,7 @@ public class VaultKeepsRepository
 
 
 // TODO Figure out why having the keep, and creator of the keep populated onto the vaultKeep is wrong
+// NOTE Generally flattened objects are more professional
 // string sql = @"
 // Select
 // vk.*, 

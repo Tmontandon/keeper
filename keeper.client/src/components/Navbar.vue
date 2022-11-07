@@ -1,42 +1,27 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <!-- NOTE d-sm-none look into it -->
+  <nav class=" bg-light elevation-5 px-3 d-flex flex-wrap justify-content-between align-items-center">
+    <!-- TODO Implement create component -->
+    <div>
+      <CreateKVButton />
+    </div>
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+      <div class="d-flex flex-column align-items-center selectable rounded" title="Home">
+        <img alt="logo" src="../assets/img/Keepr logoKeeprLogo.png" class="vh" />
       </div>
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
-      </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <Login />
-    </div>
+    <Login />
   </nav>
 </template>
 
 <script>
+import CreateKVButton from './CreateKVButton.vue';
 import Login from './Login.vue'
 export default {
   setup() {
     return {}
   },
-  components: { Login }
+  components: { Login, CreateKVButton }
 }
 </script>
 
@@ -55,10 +40,13 @@ a:hover {
   border-bottom-right-radius: 0;
 }
 
-@media screen and (min-width: 768px) {
-  nav {
-    height: 64px;
-  }
+.vh {
+  height: 8vh;
 }
 
+@media screen and (min-width: 768px) {
+  nav {
+    height: 12vh;
+  }
+}
 </style>
