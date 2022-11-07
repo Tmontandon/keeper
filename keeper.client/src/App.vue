@@ -9,6 +9,10 @@
   <footer class="">
     <!-- <Navbar /> -->
   </footer>
+
+  <!-- MODALS -->
+  <CreateKeepModal />
+  <CreateVaultModal />
 </template>
 
 <script>

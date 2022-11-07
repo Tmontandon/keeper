@@ -1,8 +1,8 @@
 <template>
-  <div class="component">
+  <div class="component oxy">
     <!-- BUTTON & DROPDOWN -->
     <div class="dropdown dropend">
-      <button class="btn bg-primary dropdown-toggle text-light m-2 fs-6 py-3 px-2 rounded-5" type="button"
+      <button class="btn bg-primary dropdown-toggle text-light m-2 fs-6 py-3 px-2 rounded-5 " type="button"
         data-bs-toggle="dropdown" aria-expanded="false">Post</button>
       <ul class="dropdown-menu bg-secondary no-select text-center p-0 elevation-3">
         <div class="list-group">
@@ -18,9 +18,6 @@
       </ul>
     </div>
 
-    <!-- MODALS -->
-    <CreateKeepModal />
-    <CreateVaultModal />
   </div>
 </template>
 
@@ -46,7 +43,12 @@ export default {
   background-color: #ded5f7;
 }
 
-.rounded-5:hover {
-  background-color: #916ef3 !important;
+.rounded-5 {
+  border: rgba(0, 0, 0, 0.588) solid 1px;
+
+  .rounded-5:hover {
+    background-color: #916ef3 !important;
+    border: rgba(0, 0, 0, 0.588) solid 1px !important;
+  }
 }
 </style>

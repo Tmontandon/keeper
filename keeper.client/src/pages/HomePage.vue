@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <div class="p-3  d-flex">
+    <div class="p-3 flex-wrap d-flex">
       <KeepCard v-for="k in keeps" :key="k.id" :keep="k" />
     </div>
   </div>
