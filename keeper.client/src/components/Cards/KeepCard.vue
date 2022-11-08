@@ -1,9 +1,9 @@
 <template>
-  <div @click="selectKeep()" class=" card elevation-3 m-3 text-dark  selectable"
-    :style="{ backgroundImage: `url(${keep?.img})` }">
+  <div @click="selectKeep()" class=" card elevation-3 m-3 text-dark " :style="{ backgroundImage: `url(${keep?.img})` }">
     <i @click.self.stop="deleteKeep()" v-if="keep.creatorId == account.id"
       class="mdi mdi-close-circle text-danger fs-4"></i>
-    <div data-bs-toggle="modal" data-bs-target="#keepModal" class="wacky d-flex justify-content-between flex-column">
+    <div data-bs-toggle="modal" data-bs-target="#keepModal"
+      class="wacky d-flex justify-content-between flex-column selectable">
       <div></div>
       <div class="d-flex justify-content-between align-items-center">
         <span class="m-2 text-light text-shadow-dark marko">
@@ -91,7 +91,7 @@ export default {
 
 .mdi {
   position: absolute;
-  right: -3%;
-  top: -5%;
+  right: 1%;
+  top: -1%;
 }
 </style>

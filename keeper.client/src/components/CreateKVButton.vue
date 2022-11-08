@@ -1,8 +1,8 @@
 <template>
   <div class="component oxy">
     <!-- BUTTON & DROPDOWN -->
-    <div class="dropdown dropend">
-      <button class="btn bg-primary dropdown-toggle text-light m-2 fs-6 py-3 px-2 rounded-5 " type="button"
+    <div class="dropdown dropend m-0 p-0">
+      <button class="btn bg-primary m-0 dropdown-toggle text-light m-2 fs-6 py-3 px-2 rounded-5 " type="button"
         data-bs-toggle="dropdown" aria-expanded="false">Post</button>
       <ul class="dropdown-menu bg-secondary no-select text-center p-0 elevation-3">
         <div class="list-group">
@@ -44,6 +44,10 @@ export default {
 <style lang="scss" scoped>
 .dropdown-item {
   background-color: #ded5f7;
+}
+
+.m-0 {
+  margin: 0 !important;
 }
 
 .rounded-5 {
