@@ -1,6 +1,7 @@
 <template>
   <div class="component">
-    <div class="card elevation-3 m-3 text-dark d-flex justify-content-between flex-column"
+    <div @click="showNewKeepModal()" data-bs-toggle="modal" data-bs-target="#keepModal"
+      class=" card elevation-3 m-3 text-dark d-flex justify-content-between flex-column selectable"
       :style="{ backgroundImage: `url(${keep.img})` }">
       <div></div>
       <div class="d-flex justify-content-between align-items-center">
@@ -22,14 +23,29 @@
 
 
 <script>
+import { AppState } from '../../AppState.js';
 import { Keep } from '../../models/Keep.js';
+import { keepsService } from '../../services/KeepsService.js';
+import Pop from '../../utils/Pop.js';
 
 export default {
   props: {
     keep: { type: Keep, required: true }
   },
-  setup() {
-    return {}
+  setup(props) {
+    return {
+      props,
+      async showNewKeepModal() {
+        try {
+          AppState.selectedKeep = props.keep
+          // keepsService.showNewKeepModal()
+        } catch (error) {
+          AppState.selectedKeep = {}
+          Pop.error(error)
+        }
+      }
+
+    }
   }
 }
 </script>

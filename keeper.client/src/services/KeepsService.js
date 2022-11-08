@@ -9,6 +9,12 @@ class KeepsService {
     AppState.keeps = res.data.map((k) => new Keep(k))
   }
 
+  showNewKeepModal() {
+    const myModal = new bootstrap.Modal('#keepModal', {
+      keyboard: false
+    })
+    myModal.show()
+  }
 
 }
 
