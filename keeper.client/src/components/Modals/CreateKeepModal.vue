@@ -28,7 +28,8 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  <button type="submit" class="btn bg-primary lighten-10 text-dark">Post
+                  <button type="submit" class="btn bg-primary lighten-10 text-dark" data-bs-dismiss="modal"
+                    aria-label="Submit">Post
                     <span class="mdi mdi-send"></span></button>
                 </div>
               </form>
@@ -44,6 +45,7 @@
 
 <script>
 import { ref } from 'vue';
+import { keepsService } from '../../services/KeepsService.js';
 import Pop from '../../utils/Pop.js';
 
 export default {
@@ -54,7 +56,9 @@ export default {
       editable,
       async postKeep() {
         try {
-
+          await keepsService.postKeep(editable.value)
+          Pop.success(`${editable.value.name} was posted!`)
+          editable.value = {}
         } catch (error) {
           Pop.error(error, "[postKeep]")
         }

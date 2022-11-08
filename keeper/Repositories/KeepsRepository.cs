@@ -55,11 +55,27 @@ public class KeepsRepository
     join accounts a on a.id = k.creatorId
     where k.id = @id
     ";
-    return _db.Query<Keep, Profile, Keep>(sql, (k, a) =>
+    AddViewToKeep(id);
+    Keep k = _db.Query<Keep, Profile, Keep>(sql, (k, a) =>
     {
       k.Creator = a;
       return k;
     }, new { id }).FirstOrDefault();
+    return k;
+  }
+
+  private void AddViewToKeep(int id)
+  {
+    string sql = @"
+    update keeps set
+    views = views +1
+    where id = @id
+    ;";
+    var rowsAffected = _db.Execute(sql, new { id });
+    if (rowsAffected == 0)
+    {
+      throw new Exception("Update did not go through");
+    }
   }
 
   internal List<Keep> GetAllKeeps()

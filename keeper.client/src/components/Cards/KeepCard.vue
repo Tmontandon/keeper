@@ -23,6 +23,7 @@
 <script>
 import { AppState } from '../../AppState.js';
 import { Keep } from '../../models/Keep.js';
+import { keepsService } from '../../services/KeepsService.js';
 import Pop from '../../utils/Pop.js';
 
 export default {
@@ -30,13 +31,24 @@ export default {
     keep: { type: Keep, required: true }
   },
   setup(props) {
+    async function viewKeep(id) {
+      try {
+        keepsService.viewKeep(id)
+      } catch (error) {
+        console.error(error);
+        Pop.error("Your view was likely not counted")
+      }
+    }
+
     return {
       props,
-      async selectKeep() {
+      selectKeep() {
         try {
+          props.keep.views++
           AppState.selectedKeep = props.keep
+          viewKeep(AppState.selectedKeep.id)
         } catch (error) {
-          AppState.selectedKeep = {}
+          // AppState.selectedKeep = {}
           Pop.error(error)
         }
       }

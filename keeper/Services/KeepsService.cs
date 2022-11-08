@@ -35,7 +35,7 @@ public class KeepsService
     Keep keep = GetKeepById(id);
     if (keep.CreatorId != keepData.CreatorId)
     {
-      throw new Exception("This isnt your Keep, go away");
+      throw new Exception("This isn't your keep, go away");
     }
     keep.Description = keepData.Description ?? keep.Description;
     keep.Img = keepData.Img ?? keep.Img;
