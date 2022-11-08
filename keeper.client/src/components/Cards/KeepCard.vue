@@ -1,8 +1,9 @@
 <template>
-  <div class="component">
-    <div @click="selectKeep()" data-bs-toggle="modal" data-bs-target="#keepModal"
-      class=" card elevation-3 m-3 text-dark d-flex justify-content-between flex-column selectable"
-      :style="{ backgroundImage: `url(${keep?.img})` }">
+  <div @click="selectKeep()" class=" card elevation-3 m-3 text-dark  selectable"
+    :style="{ backgroundImage: `url(${keep?.img})` }">
+    <i @click.self.stop="deleteKeep()" v-if="keep.creatorId == account.id"
+      class="mdi mdi-close-circle text-danger fs-4"></i>
+    <div data-bs-toggle="modal" data-bs-target="#keepModal" class="wacky d-flex justify-content-between flex-column">
       <div></div>
       <div class="d-flex justify-content-between align-items-center">
         <span class="m-2 text-light text-shadow-dark marko">
@@ -21,6 +22,7 @@
 
 
 <script>
+import { computed } from '@vue/reactivity';
 import { AppState } from '../../AppState.js';
 import { Keep } from '../../models/Keep.js';
 import { keepsService } from '../../services/KeepsService.js';
@@ -41,7 +43,17 @@ export default {
     }
 
     return {
+      account: computed(() => AppState.account),
       props,
+      async deleteKeep() {
+        try {
+          if (await Pop.confirm()) {
+            keepsService.deleteKeep(props.keep.id)
+          }
+        } catch (error) {
+          Pop.error(error, "[DeleteKeep]");
+        }
+      },
       selectKeep() {
         try {
           props.keep.views++
@@ -49,7 +61,7 @@ export default {
           viewKeep(AppState.selectedKeep.id)
         } catch (error) {
           // AppState.selectedKeep = {}
-          Pop.error(error)
+          Pop.error(error, "[SelectKeep]")
         }
       }
 
@@ -67,8 +79,19 @@ export default {
   background-size: cover;
 }
 
+.wacky {
+  height: 40vh;
+  width: 40vw;
+}
+
 .pfp {
   height: 7vh;
   border: rgba(0, 0, 0, 0.588) solid 1px;
+}
+
+.mdi {
+  position: absolute;
+  right: -3%;
+  top: -5%;
 }
 </style>
