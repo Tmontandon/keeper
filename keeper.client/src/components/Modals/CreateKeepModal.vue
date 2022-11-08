@@ -1,7 +1,7 @@
 <template>
   <div class="component oxy">
     <div class="modal" id="CreateKeep" tabindex="-1" aria-labelledby="CreateVaultModal" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-md">
         <div class="modal-content bg-secondary ">
           <div class="modal-body">
             <h5 class="modal-title fs-3">Create A Keep!</h5>
