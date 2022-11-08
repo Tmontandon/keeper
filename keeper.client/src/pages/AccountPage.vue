@@ -5,7 +5,7 @@
       <img :src="account?.picture" alt="Account Pfp" class="img-fluid pfp rounded-5" />
     </div>
     <h1 class="m-2">{{ account?.name }}</h1>
-    <!-- <p>{{ vaults.id.length }} Vaults | {{ keeps.id.length }} Keeps</p> -->
+    <!-- <p>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</p> -->
   </div>
 </template>
 
@@ -16,14 +16,6 @@ import { accountService } from '../services/AccountService.js'
 import Pop from '../utils/Pop.js'
 export default {
   setup() {
-    async function getAccountVaults() {
-      try {
-        await accountService.getAccountVaults(AppState.account)
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
-
     async function getAccount() {
       try {
         await accountService.getAccount()
@@ -32,14 +24,32 @@ export default {
       }
     }
 
+    async function getAccountVaults() {
+      try {
+        await accountService.getAccountVaults()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+
+    async function getUserKeeps() {
+      try {
+        await accountService.getUserKeeps(AppState.account.id)
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+
     onMounted(() => {
       getAccount();
-      getAccountVaults()
+      getAccountVaults();
+      getUserKeeps();
     })
 
-    watchEffect(() => {
-      getAccountVaults()
-    })
+    // watchEffect(() => {
+    //   getAccountVaults()
+    //   getAccKeeps();
+    // })
     return {
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps),
