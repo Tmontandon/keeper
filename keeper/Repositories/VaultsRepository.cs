@@ -66,7 +66,7 @@ public class VaultsRepository
   {
     string sql = @"
     Select v.*, a.* from vaults v
-    Join accounts s On a.id - v.creatorId
+    Join accounts a On a.id - v.creatorId
     Where v.creatorId = @id
     ;";
     return _db.Query<Vault, Profile, Vault>(sql, (v, p) =>

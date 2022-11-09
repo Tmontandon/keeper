@@ -30,13 +30,12 @@ public class AccountController : ControllerBase
     }
   }
 
-  [HttpGet("/vaults")]
+  [HttpGet("vaults")]
   [Authorize]
   public async Task<ActionResult<List<Vault>>> GetAccVaultsWithP()
   {
     try
     {
-      Console.WriteLine("I am working/ being called on");
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
       List<Vault> Vaults = _vs.GetAccVaultsWithP(userInfo.Id);
       return Ok(Vaults);
