@@ -31,4 +31,21 @@ public class AccountService
     original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
     return _repo.Edit(original);
   }
+
+  // NOTE MY FUNCTIONS
+  internal Profile GetProfileById(string pId)
+  {
+    Profile p = _repo.GetById(pId);
+    return p;
+  }
+
+  internal List<Keep> GetKeepsByAccId(string id)
+  {
+    return _repo.GetKeepsByAccId(id);
+  }
+
+  internal List<Vault> GetVaultsByAccId(string id)
+  {
+    return _repo.GetVaultsByAccId(id);
+  }
 }

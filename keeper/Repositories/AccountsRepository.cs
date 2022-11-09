@@ -43,5 +43,37 @@ public class AccountsRepository
     _db.Execute(sql, update);
     return update;
   }
+
+  // NOTE MY FUNCTIONS
+  internal List<Keep> GetKeepsByAccId(string id)
+  {
+    string sql = @"
+    Select k.*, a.* From keeps k
+    Join accounts a On a.id = k.creatorId
+    Where k.creatorId = @id
+    ;";
+    return _db.Query<Keep, Profile, Keep>(sql, (k, a) =>
+        {
+          k.Creator = a;
+          k.CreatorId = a.Id;
+          return k;
+        }, new { id }).ToList();
+
+  }
+
+  internal List<Vault> GetVaultsByAccId(string id)
+  {
+    string sql = @"
+    Select v.*, a.* From vaults v
+    Join accounts a On a.id = v.creatorId
+    Where v.creatorId = @id
+    ;";
+    return _db.Query<Vault, Profile, Vault>(sql, (v, a) =>
+        {
+          v.Creator = a;
+          v.CreatorId = a.Id;
+          return v;
+        }, new { id }).ToList();
+  }
 }
 

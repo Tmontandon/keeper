@@ -49,7 +49,7 @@ public class VaultsRepository
     var rowsAffected = _db.Execute(sql, v);
     if (rowsAffected == 0)
     {
-      throw new Exception("Edit didnt go through");
+      throw new Exception("Edit didn't go through");
     }
     return v;
   }
