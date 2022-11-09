@@ -2,8 +2,8 @@
   <div class="component oxy">
     <!-- BUTTON & DROPDOWN -->
     <div class="dropdown dropend m-0 p-0">
-      <button class="btn bg-primary m-0 dropdown-toggle text-light m-2 fs-6 py-3 px-2 rounded-5 " type="button"
-        data-bs-toggle="dropdown" aria-expanded="false">Post</button>
+      <button class="btn bg-primary m-0 dropdown-toggle text-light m-2 fs-6 py-3 px-2 rounded-5 text-shadow-dark"
+        type="button" data-bs-toggle="dropdown" aria-expanded="false">Post</button>
       <ul class="dropdown-menu bg-secondary no-select text-center p-0 elevation-3">
         <div class="list-group">
           <li data-bs-toggle="modal" data-bs-target="#CreateKeep"
@@ -26,8 +26,8 @@
 
 
 <script>
-import CreateKeepModal from './Modals/CreateKeepModal.vue';
-import CreateVaultModal from './Modals/CreateVaultModal.vue';
+import CreateKeepModal from '../Modals/CreateKeepModal.vue';
+import CreateVaultModal from '../Modals/CreateVaultModal.vue';
 
 export default {
   setup() {

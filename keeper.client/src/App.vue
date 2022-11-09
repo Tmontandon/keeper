@@ -1,13 +1,14 @@
 <template>
-  <header>
+  <!-- NOTE d-sm-none look into it -->
+  <header class="d-none d-sm-block sticky-top">
     <Navbar />
   </header>
   <main>
     <router-view />
   </main>
   <!-- NOTE maybe I can go here to put in component for thing -->
-  <footer class="">
-    <!-- <Navbar /> -->
+  <footer class="d-sm-none sticky-bottom bg-light">
+    <FootBar />
   </footer>
 
 </template>
@@ -15,6 +16,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
+import FootBar from './components/FootBar.vue'
 import Navbar from './components/Navbar.vue'
 
 export default {
@@ -23,7 +25,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, FootBar }
 }
 </script>
 <style lang="scss">
@@ -31,12 +33,5 @@ export default {
 
 :root {
   --main-height: calc(100vh - 32px - 64px);
-}
-
-
-footer {
-  display: grid;
-  place-content: center;
-  height: 32px;
 }
 </style>

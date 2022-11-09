@@ -5,7 +5,11 @@
         <div class="modal-content bg-secondary">
           <div class="row">
             <!-- Picture -->
-            <div class="fit pic-card rounded-start col-md-6" :style="{ backgroundImage: `url(${keep?.img})` }"></div>
+            <div class="fit pic-card rounded-start col-md-6 " :style="{ backgroundImage: `url(${keep?.img})` }">
+              <button type="button" class="btn m-3 text-light text-shadow-dark bg-t" data-bs-dismiss="modal"
+                aria-label="Close" title="Go Back">
+                &lt Go Back</button>
+            </div>
             <!-- Content -->
             <div class="content bg-secondary col-md-6 rounded-end">
               <div class="d-flex flex-column justify-content-between content">
@@ -75,9 +79,9 @@ h2 {
   height: 65vh;
 }
 
-// .modal-dialog {
-//   height: 80vh;
-// }
+.bg-t {
+  background-color: rgba(0, 0, 0, 0.321);
+}
 
 .gre {
   color: #636E72;
