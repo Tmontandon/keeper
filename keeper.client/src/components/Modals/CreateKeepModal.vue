@@ -7,7 +7,7 @@
             <h5 class="modal-title fs-3">Create A Keep!</h5>
             <div class="">
               <form class="row g-2" @submit.prevent="postKeep()">
-                <div class="form-floating my-3 col-4">
+                <div class="form-floating my-3 col-sm-6">
                   <input type="text" class="form-control" required v-model="editable.name" name="name"
                     placeholder="Name:" maxlength="25" />
                   <label for="name">Name:</label>

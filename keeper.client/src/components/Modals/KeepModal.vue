@@ -67,8 +67,12 @@ export default {
   border: rgba(0, 0, 0, 0.588) solid 1px;
 }
 
+h2 {
+  overflow-x: scroll;
+}
+
 .content {
-  height: 50vh;
+  height: 65vh;
 }
 
 // .modal-dialog {
@@ -77,10 +81,13 @@ export default {
 
 .gre {
   color: #636E72;
+  max-height: 32vh;
+  overflow-y: scroll;
+  margin-bottom: 0;
 }
 
 .pic-card {
-  height: 50vh;
+  height: 65vh;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

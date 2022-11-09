@@ -1,11 +1,10 @@
 <template>
-  <div @click="selectKeep()" class=" card elevation-3 m-3 text-dark " :style="{ backgroundImage: `url(${keep?.img})` }">
-    <i @click.self.stop="deleteKeep()" v-if="keep.creatorId == account.id"
-      class="mdi mdi-close-circle text-danger fs-4"></i>
-    <div data-bs-toggle="modal" data-bs-target="#keepModal"
-      class="wacky d-flex justify-content-between flex-column selectable">
-      <div></div>
-      <div class="d-flex justify-content-between align-items-center">
+  <div @click="selectKeep()" class=" card elevation-3 m-3 text-dark selectable"
+    :style="{ backgroundImage: `url(${keep?.img})` }">
+    <div data-bs-toggle="modal" data-bs-target="#keepModal" class="wacky d-flex justify-content-between flex-column ">
+      <div class="text-end pe-2"><i @click.self.stop="deleteKeep()" v-if="keep.creatorId == account.id"
+          class="mdi mdi-close-circle text-danger fs-4"></i></div>
+      <div class="d-flex flex-wrap justify-content-between align-items-center">
         <span class="m-2 text-light text-shadow-dark marko">
           {{ keep?.name }}
         </span>
@@ -89,9 +88,23 @@ export default {
   border: rgba(0, 0, 0, 0.588) solid 1px;
 }
 
+.card:hover {
+  transform: scale(1.01);
+  transition: 100ms;
+}
+
+span {
+  overflow-x: scroll;
+}
+
 .mdi {
-  position: absolute;
-  right: 1%;
-  top: -1%;
+  // position: absolute;
+  // right: 1%;
+  // top: -1%;
+  opacity: 0;
+
+  .mdi:hover {
+    opacity: 1 !important;
+  }
 }
 </style>

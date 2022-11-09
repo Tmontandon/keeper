@@ -78,4 +78,21 @@ export default {
 .desc {
   height: 43vh !important;
 }
+
+.form-floating>label {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 0.75rem;
+  overflow: hidden;
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
 </style>
