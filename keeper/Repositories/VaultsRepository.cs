@@ -61,5 +61,19 @@ public class VaultsRepository
     ";
     _db.Execute(sql, new { id });
   }
+
+  internal List<Vault> GetAccVaultsWithP(string id)
+  {
+    string sql = @"
+    Select v.*, a.* from vaults v
+    Join accounts s On a.id - v.creatorId
+    Where v.creatorId = @id
+    ;";
+    return _db.Query<Vault, Profile, Vault>(sql, (v, p) =>
+        {
+          v.Creator = p;
+          return v;
+        }, new { id }).ToList();
+  }
 }
 

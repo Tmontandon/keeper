@@ -9,7 +9,7 @@ public class VaultsService
     _vr = vr;
   }
 
-  internal List<Vault> GetAllVaults()
+  internal List<Vault> GetAccVaultsWithoutP()
   {
     throw new NotImplementedException();
   }
@@ -27,6 +27,11 @@ public class VaultsService
       throw new Exception("This id doesnt apply to any vaults");
     }
     return selectedV;
+  }
+
+  internal List<Vault> GetAllVaults()
+  {
+    throw new NotImplementedException();
   }
 
   internal Vault EditVault(Vault vData, int id)
@@ -52,6 +57,11 @@ public class VaultsService
       throw new Exception("You cant delete something you haven't made >:( ");
     }
     _vr.DeleteVault(id);
+  }
+
+  internal List<Vault> GetAccVaultsWithP(string id)
+  {
+    return _vr.GetAccVaultsWithP(id);
   }
 }
 
