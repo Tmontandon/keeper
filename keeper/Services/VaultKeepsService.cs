@@ -3,10 +3,12 @@ namespace keeper.Services;
 public class VaultKeepsService
 {
   private readonly VaultKeepsRepository _vkr;
+  private readonly VaultsService _vs;
 
-  public VaultKeepsService(VaultKeepsRepository vkr)
+  public VaultKeepsService(VaultKeepsRepository vkr, VaultsService vs)
   {
     _vkr = vkr;
+    _vs = vs;
   }
 
   internal VaultKeep GetVKById(int Id)
@@ -21,6 +23,11 @@ public class VaultKeepsService
 
   internal VaultKeep PostVK(VaultKeep vkData)
   {
+    Vault v = _vs.GetVaultById(vkData.VaultId);
+    if (v.CreatorId != vkData.CreatorId)
+    {
+      throw new Exception("Thats not your vault!");
+    }
     VaultKeep vk = _vkr.PostVK(vkData);
     return vk;
   }
