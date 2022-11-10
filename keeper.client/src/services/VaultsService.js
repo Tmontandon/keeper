@@ -1,4 +1,5 @@
 import { AppState } from "../AppState.js"
+import { Keep } from "../models/Keep.js"
 import { Vault } from "../models/Vault.js"
 import { router } from "../router.js"
 import Pop from "../utils/Pop.js"
@@ -24,9 +25,13 @@ class VaultsService {
       Pop.toast('you are very much not allowed to see private vaults >:(')
       AppState.selectedVault = {}
     }
-
-
   }
+  async getVaultKeeps(id) {
+    const res = await api.get(`api/vaults/${id}/keeps`)
+    AppState.keeps = res.data.map((k) => new Keep(k))
+  }
+
+
 }
 
 export const vaultsService = new VaultsService()
