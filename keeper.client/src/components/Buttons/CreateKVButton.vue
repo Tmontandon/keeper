@@ -5,7 +5,8 @@
       <button class="btn bg-primary m-0 dropdown-toggle text-light m-2 fs-6 py-3 px-2 rounded-5 text-shadow-dark"
         type="button" data-bs-toggle="dropdown" aria-expanded="false">Post</button>
       <ul class="dropdown-menu bg-secondary no-select text-center p-0 elevation-3">
-        <div class="list-group">
+        <div v-if="!account.id">Login To Post!</div>
+        <div v-else class="list-group">
           <li data-bs-toggle="modal" data-bs-target="#CreateKeep"
             class="selectable list-group-item dropdown-item list-group-item-action rounded-top no-select text-shadow-dark text-light">
             New Keep
@@ -23,11 +24,18 @@
 
 
 <script>
+import { computed } from '@vue/reactivity';
+import { onMounted } from 'vue';
+import { AppState } from '../../AppState.js';
+
 
 export default {
   setup() {
-
+    onMounted(() => {
+      console.log(AppState.user);
+    })
     return {
+      account: computed(() => AppState.account)
 
     };
   },

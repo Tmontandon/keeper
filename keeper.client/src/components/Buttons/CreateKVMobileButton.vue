@@ -7,7 +7,8 @@
         <p class="mb-0 fs-3 px-1 text-shadow-dark">Create</p>
       </button>
       <ul class="dropdown-menu bg-secondary no-select text-center p-0 elevation-3">
-        <div class="list-group">
+        <div v-if="!account.id">Login To Create</div>
+        <div v-else class="list-group">
           <li data-bs-toggle="modal" data-bs-target="#CreateKeep"
             class="selectable list-group-item dropdown-item list-group-item-action rounded-top no-select text-shadow-dark text-light">
             New Keep
@@ -19,17 +20,18 @@
         </div>
       </ul>
     </div>
-
   </div>
 </template>
 
 
 <script>
-
+import { computed } from '@vue/reactivity';
+import { AppState } from '../../AppState.js';
 export default {
   setup() {
 
     return {
+      account: computed(() => AppState.account),
 
     };
   },
@@ -54,8 +56,6 @@ export default {
     border: rgba(0, 0, 0, 0.588) solid 1px !important;
   }
 }
-
-
 
 .dropdown-toggle::after {
   display: none;
