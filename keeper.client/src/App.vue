@@ -5,6 +5,9 @@
   </header>
   <main>
     <router-view />
+    <KeepModal />
+    <CreateKeepModal />
+    <CreateVaultModal />
   </main>
   <!-- NOTE maybe I can go here to put in component for thing -->
   <footer class="d-sm-none sticky-bottom bg-light">
@@ -17,6 +20,9 @@
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import FootBar from './components/FootBar.vue'
+import CreateKeepModal from './components/Modals/CreateKeepModal.vue'
+import CreateVaultModal from './components/Modals/CreateVaultModal.vue'
+import KeepModal from './components/Modals/KeepModal.vue'
 import Navbar from './components/Navbar.vue'
 
 export default {
@@ -25,7 +31,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, FootBar }
+  components: { Navbar, FootBar, KeepModal, CreateKeepModal, CreateVaultModal }
 }
 </script>
 <style lang="scss">

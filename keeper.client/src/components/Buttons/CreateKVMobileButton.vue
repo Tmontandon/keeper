@@ -20,16 +20,11 @@
       </ul>
     </div>
 
-    <!-- MODALS -->
-    <CreateKeepModal />
-    <CreateVaultModal />
   </div>
 </template>
 
 
 <script>
-import CreateKeepModal from '../Modals/CreateKeepModal.vue';
-import CreateVaultModal from '../Modals/CreateVaultModal.vue';
 
 export default {
   setup() {
@@ -38,7 +33,6 @@ export default {
 
     };
   },
-  components: { CreateKeepModal, CreateVaultModal }
 }
 </script>
 

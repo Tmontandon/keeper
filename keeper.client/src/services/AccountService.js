@@ -18,7 +18,7 @@ class AccountService {
   async getAccountVaults() {
     try {
       const res = await api.get(`/account/vaults`)
-      AppState.vaults = res.data.map((v) => new Vault(v))
+      AppState.accountVaults = res.data.map((v) => new Vault(v))
     } catch (error) {
       logger.log(error)
     }
@@ -29,7 +29,7 @@ class AccountService {
   async getUserKeeps(id) {
     try {
       const res = await api.get(`api/profiles/${id}/keeps`)
-      AppState.keeps = res.data.map((k) => new Keep(k))
+      AppState.accountKeeps = res.data.map((k) => new Keep(k))
     } catch (error) {
       logger.log(error)
     }

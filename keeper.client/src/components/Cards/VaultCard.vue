@@ -1,23 +1,25 @@
 <template>
   <div class="component">
-    <div @click="selectKeep()" class=" card elevation-3 m-3 text-dark selectable"
-      :style="{ backgroundImage: `url(${vault?.img})` }">
-      <div data-bs-toggle="modal" data-bs-target="#vaultModal"
-        class="wacky d-flex justify-content-between flex-column ">
-        <div></div>
-        <div class="d-flex flex-wrap justify-content-between align-items-center">
-          <span class="m-2 text-light text-shadow-dark marko">
-            {{ vault?.name }}
-          </span>
+    <!-- NOTE Router link to page -->
+    <!-- <router-link :to="{ name: 'Profile', params: { id: vault.creatorId } }"> -->
+    <router-link :to="{ name: 'Profile', params: { id: vault.creatorId } }">
+      <div class="card elevation-3 m-3 text-dark selectable" :style="{ backgroundImage: `url(${vault?.img})` }">
+        <div class="wacky d-flex justify-content-between flex-column ">
+          <div></div>
+          <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <span class="m-2 text-light text-shadow-dark marko">
+              {{ vault?.name }}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-
+    </router-link>
   </div>
 </template>
 
 
 <script>
+// import { RouterLink } from 'vue-router';
 import { Vault } from '../../models/Vault.js';
 
 export default {
@@ -25,8 +27,9 @@ export default {
     vault: { type: Vault, required: true }
   },
   setup() {
-    return {}
-  }
+    return {};
+  },
+  // components: { RouterLink }
 }
 </script>
 

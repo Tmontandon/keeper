@@ -5,7 +5,6 @@
     </div>
   </div>
 
-  <KeepModal />
 </template>
 
 
@@ -14,7 +13,6 @@
 import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
 import KeepCard from '../components/Cards/KeepCard.vue';
-import KeepModal from '../components/Modals/KeepModal.vue';
 import { keepsService } from '../services/KeepsService.js'
 import Pop from '../utils/Pop.js';
 
@@ -35,7 +33,7 @@ export default {
       keeps: computed(() => AppState.keeps)
     };
   },
-  components: { KeepCard, KeepModal }
+  components: { KeepCard }
 }
 </script>
 
