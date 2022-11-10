@@ -50,8 +50,8 @@ CREATE TABLE
         Foreign Key (keepId) REFERENCES keeps(id) on delete cascade
     ) default charset utf8 COMMENT '';
 
--- Drop table keeps;
+-- Delete From keeps;
 
--- Drop table vaults;
+-- Delete From  vaults;
 
--- Drop table vaultKeeps;
+-- Delete From  vaultKeeps;

@@ -1,15 +1,20 @@
 <template>
-  <div v-if="vault.name" class="component container">
-    <div class="row">
-      <div class="p-4 cover-img text-center"
+  <div v-if="vault.name" class="component container ">
+    <div class="row justify-content-center mt-2 marko">
+      <div class="p-4 cover-img d-flex flex-column justify-content-center align-items-center rounded elevation-2"
         :style="vault.img ? { backgroundImage: `url(${vault.img})` } : { backgroundImage: `url(//thiscatdoesnotexist.com)` }">
+        <h2 class="text-light text-shadow-dark">{{ vault.name }}</h2>
         <h5 class="text-light text-shadow-dark">{{ vault.creator.name }}</h5>
       </div>
-      <h4 v-if="keeps.length == 1">{{ keeps.length }} keep</h4>
-      <h4 v-else>{{ keeps.length }} keeps</h4>
-      <div class="row">
-        <KeepCard v-for="k in   keeps" :key="k.id" :keep="k" class="col-3" />
-      </div>
+      <span class="text-center p-2  lighten-10" v-if="keeps.length == 1">
+        <h4>{{ keeps.length }} keep</h4>
+      </span>
+      <span class="text-center p-2  lighten-10" v-else>
+        <h4>{{ keeps.length }} keeps</h4>
+      </span>
+    </div>
+    <div class="row">
+      <KeepCard v-for="k in   keeps" :key="k.id" :keep="k" class="col-3" />
     </div>
   </div>
 </template>
@@ -17,7 +22,7 @@
 
 <script>
 import { computed } from '@vue/reactivity';
-import { onMounted } from 'vue';
+import { onMounted, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState.js';
 import KeepCard from '../components/Cards/KeepCard.vue';
@@ -44,10 +49,13 @@ export default {
       }
     }
     onMounted(() => {
-      AppState.keeps = [];
+    });
+
+    // TODO I dont know how to make account load before these go through
+    watchEffect(() => {
       getSelectedVault();
       getVaultKeeps();
-    });
+    })
     return {
       vault: computed(() => AppState.selectedVault),
       keeps: computed(() => AppState.keeps)

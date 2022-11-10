@@ -1,8 +1,12 @@
 <template>
   <div class="component">
     <div class="card elevation-3 m-3 text-dark selectable" :style="{ backgroundImage: `url(${vault?.img})` }">
-      <i @click.self.stop="deleteVault()" v-if="vault.creatorId == account.id"
-        class="mdi mdi-delete-circle text-danger fs-4 text-shadow" title="Delete Keep"></i>
+      <div class="">
+        <i @click.self.stop="deleteVault()" v-if="vault.creatorId == account.id"
+          class="mdi mdi-delete-circle text-danger fs-4 text-shadow" title="Delete Keep"></i>
+        <i v-if="vault.isPrivate" class="mdi mdi-lock fs-2 text-start text-shadow-dark text-secondary"
+          title="This vault is private"></i>
+      </div>
       <router-link :to="{ name: 'Vault', params: { id: vault.id } }">
         <div class="wacky d-flex justify-content-between flex-column ">
           <div></div>
@@ -71,7 +75,7 @@ span {
   overflow-x: scroll;
 }
 
-.mdi {
+.mdi-delete-circle {
   position: absolute;
   right: 1%;
   top: -1%;

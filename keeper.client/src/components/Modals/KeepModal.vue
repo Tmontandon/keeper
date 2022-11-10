@@ -30,9 +30,46 @@
                 </div>
                 <!-- STUB Intractable -->
                 <div v-if="keep.creatorId" class="d-flex justify-content-between mb-1 ">
+                  <!-- NOTE IF YOURE NOT IN VAULT PAGE -->
                   <span class="ms-2">
-
-
+                    <!-- <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Your Vaults
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                          <h6 class="dropdown-header">Select A Vault</h6>
+                        </li>
+                        <div class="form-group p-1">
+                          <select v-for="v in vaults" class="form-select form-select-sm bg-light" required
+                            v-model="editable.id">
+                            <option class="dropdown-item" :value="v.id">{{ v.name }}</option>
+                          </select>
+                        </div>
+                      </ul>
+                    </div>
+                    <button class="btn bg-primary" @click="vaultKeep(editable.vault)">Vault</button> -->
+                    <div class="dropdown" v-if="keep.name">
+                      <button type="button" class="btn bg-t dropdown-toggle text-light text-shadow-dark"
+                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                        Vault This Keep
+                      </button>
+                      <form class="dropdown-menu p-4">
+                        <div class="mb-3">
+                          <select v-for="v in vaults" class="form-select form-select-sm bg-light" required
+                            v-model="editable">
+                            <option :value="v.id">{{ v.name }}</option>
+                          </select>
+                        </div>
+                        <button @click="vaultKeep()" class="btn bg-primary" data-bs-dismiss="modal">Vault</button>
+                      </form>
+                    </div>
+                  </span>
+                  <!-- NOTE IF YOURE IN VAULT PAGE -->
+                  <span>
+                    <div @click="unvaultKeep()" class="btn bg-t text-light text-shadow-dark" data-bs-dismiss="modal">
+                      Unvault</div>
                   </span>
                   <span class="me-2 d-flex align-items-center" data-bs-dismiss="modal">
                     <router-link :to="{ name: 'Profile', params: { id: keep?.creatorId } }">
@@ -53,13 +90,37 @@
 
 
 <script>
+import { ref } from 'vue';
 import { computed } from '@vue/reactivity';
+import { useRoute } from 'vue-router';
 import { AppState } from '../../AppState.js';
+import { keepsService } from '../../services/KeepsService.js';
+import Pop from '../../utils/Pop.js';
 
 export default {
   setup() {
+    const route = useRoute();
+    const editable = ref("")
     return {
-      keep: computed(() => AppState.selectedKeep)
+      editable,
+      keep: computed(() => AppState.selectedKeep),
+      vaults: computed(() => AppState.accountVaults),
+      async unvaultKeep() {
+        try {
+          // debugger
+          await keepsService.unvaultKeep(AppState.selectedKeep.vaultKeepId, AppState.selectedKeep.id)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
+      async vaultKeep() {
+        try {
+          await keepsService.vaultKeep(editable.value, AppState.selectedKeep.id)
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
     }
   }
 }
@@ -106,5 +167,9 @@ h2 {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.dropdown-toggle::after {
+  display: none;
 }
 </style>
