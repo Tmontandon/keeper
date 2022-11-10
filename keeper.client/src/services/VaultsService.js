@@ -14,7 +14,7 @@ class VaultsService {
 
   async deleteVault(vId) {
     await api.delete(`/api/vaults/${vId}`)
-    AppState.vaults = AppState.vaults.filter(v => v.id != vId)
+    AppState.accountVaults = AppState.accountVaults.filter(v => v.id != vId)
   }
 
   async getSelectedVault(id) {

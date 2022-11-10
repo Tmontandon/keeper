@@ -2,7 +2,7 @@
   <div v-if="profile" class="component">
     <div class="about  d-flex flex-column align-items-center">
       <div class="cover-img my-4 rounded text-center"
-        :style="profile.coverImg ? { backgroundImage: `url(profile.coverImg)` } : { backgroundImage: `url(//thiscatdoesnotexist.com)` }">
+        :style="profile.coverImg ? { backgroundImage: `url(${profile.coverImg})` } : { backgroundImage: `url(//thiscatdoesnotexist.com)` }">
         <img v-if="profile.picture" :src="profile?.picture" alt="Profile Pfp" class="img-fluid pfp rounded-5" />
       </div>
       <h1 class="m-2">{{ profile?.name }}</h1>

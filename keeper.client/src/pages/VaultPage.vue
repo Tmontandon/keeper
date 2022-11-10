@@ -2,7 +2,7 @@
   <div v-if="vault.name" class="component container">
     <div class="row">
       <div class="p-4 cover-img text-center"
-        :style="vault.img ? { backgroundImage: `url(//thiscatdoesnotexist.com)` } : { backgroundImage: `url(vault.img)` }">
+        :style="vault.img ? { backgroundImage: `url(${vault.img})` } : { backgroundImage: `url(//thiscatdoesnotexist.com)` }">
         <h3 class="text-light text-shadow-dark">{{ vault.name }}</h3>
       </div>
       <div class="row">

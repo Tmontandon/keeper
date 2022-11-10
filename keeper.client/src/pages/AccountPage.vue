@@ -2,7 +2,7 @@
   <section v-if="account.name">
     <div class="about  d-flex flex-column align-items-center">
       <div class="cover-img my-4 rounded text-center"
-        :style="account.coverImg ? { backgroundImage: `url(account.coverImg)` } : { backgroundImage: `url(//thiscatdoesnotexist.com)` }">
+        :style="account.coverImg ? { backgroundImage: `url(${account.coverImg})` } : { backgroundImage: `url(//thiscatdoesnotexist.com)` }">
         <img v-if="account.picture" :src="account?.picture" alt="Account Pfp" class="img-fluid pfp rounded-5" />
       </div>
       <h1 class="m-2">{{ account?.name }}</h1>
