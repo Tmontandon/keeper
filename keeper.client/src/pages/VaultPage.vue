@@ -3,13 +3,14 @@
     <div class="row">
       <div class="p-4 cover-img text-center"
         :style="vault.img ? { backgroundImage: `url(${vault.img})` } : { backgroundImage: `url(//thiscatdoesnotexist.com)` }">
-        <h3 class="text-light text-shadow-dark">{{ vault.name }}</h3>
+        <h5 class="text-light text-shadow-dark">{{ vault.creator.name }}</h5>
       </div>
+      <h4 v-if="keeps.length == 1">{{ keeps.length }} keep</h4>
+      <h4 v-else>{{ keeps.length }} keeps</h4>
       <div class="row">
-        <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="col-3" />
+        <KeepCard v-for="k in   keeps" :key="k.id" :keep="k" class="col-3" />
       </div>
     </div>
-
   </div>
 </template>
 
