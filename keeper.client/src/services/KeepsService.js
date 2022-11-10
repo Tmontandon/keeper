@@ -6,6 +6,7 @@ class KeepsService {
 
   async getAllKeeps() {
     const res = await api.get("/api/keeps")
+    // console.log("bruh", res.data);
     AppState.keeps = res.data.map((k) => new Keep(k))
   }
 
@@ -24,9 +25,11 @@ class KeepsService {
     AppState.accountKeeps = AppState.accountKeeps.filter((k) => k.id != id)
   }
 
-  async unvaultKeep(id, idd) {
-    await api.delete(`/api/vaultkeeps/${id}`)
-    AppState.keeps = AppState.keeps.filter((k) => k.id == idd)
+  async unvaultKeep(vaultKeepId, keepId) {
+    await api.delete(`/api/vaultkeeps/${vaultKeepId}`)
+    // console.log("beofre", AppState.keeps);
+    AppState.keeps = AppState.keeps.filter(k => k.id !== keepId)
+    // console.log("after", AppState.keeps);
     AppState.selectedKeep = {}
   }
 

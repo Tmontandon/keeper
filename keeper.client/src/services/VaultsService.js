@@ -29,8 +29,9 @@ class VaultsService {
   }
   async getVaultKeeps(id) {
     const res = await api.get(`api/vaults/${id}/keeps`)
-    console.log(res.data);
+    // console.log("getting vault keeps", res.data);
     AppState.keeps = res.data.map((k) => new Keep(k))
+    // AppState.keeps = res.data
   }
 
 
