@@ -44,9 +44,10 @@ class AccountService {
     }
   }
 
-  async getUserVaults() {
+  async getUserVaults(id) {
     try {
-
+      const res = await api.get(`api/profiles/${id}/vaults`)
+      AppState.accountVaults = res.data.map((v) => new Vault(v))
     } catch (error) {
       logger.log(error)
     }

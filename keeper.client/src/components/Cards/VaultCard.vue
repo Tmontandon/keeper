@@ -1,7 +1,9 @@
 <template>
   <div class="component">
-    <router-link :to="{ name: 'Profile', params: { id: vault.creatorId } }">
-      <div class="card elevation-3 m-3 text-dark selectable" :style="{ backgroundImage: `url(${vault?.img})` }">
+    <div class="card elevation-3 m-3 text-dark selectable" :style="{ backgroundImage: `url(${vault?.img})` }">
+      <i @click.self.stop="deleteVault()" v-if="vault.creatorId == account.id"
+        class="mdi mdi-delete-circle text-danger fs-4 text-shadow" title="Delete Keep"></i>
+      <router-link :to="{ name: 'Vault', params: { id: vault.id } }">
         <div class="wacky d-flex justify-content-between flex-column ">
           <div></div>
           <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -10,24 +12,39 @@
             </span>
           </div>
         </div>
-      </div>
-    </router-link>
+      </router-link>
+    </div>
   </div>
 </template>
 
 
 <script>
-// import { RouterLink } from 'vue-router';
+import { computed } from '@vue/reactivity';
+import { AppState } from '../../AppState.js';
 import { Vault } from '../../models/Vault.js';
+import { vaultsService } from '../../services/VaultsService.js';
+import Pop from '../../utils/Pop.js';
 
 export default {
   props: {
     vault: { type: Vault, required: true }
   },
-  setup() {
-    return {};
+  setup(props) {
+    return {
+      props,
+      account: computed(() => AppState.account),
+
+      async deleteVault() {
+        try {
+          if (await Pop.confirm("Delete this vault?")) {
+            vaultsService.deleteVault(props.vault.id)
+          }
+        } catch (error) {
+          Pop.error(error, "[DeleteVault]");
+        }
+      }
+    };
   },
-  // components: { RouterLink }
 }
 </script>
 
@@ -52,5 +69,11 @@ export default {
 
 span {
   overflow-x: scroll;
+}
+
+.mdi {
+  position: absolute;
+  right: 1%;
+  top: -1%;
 }
 </style>

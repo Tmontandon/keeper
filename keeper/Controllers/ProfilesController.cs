@@ -40,11 +40,11 @@ public class ProfilesController : ControllerBase
   }
 
   [HttpGet("{id}/vaults")]
-  public ActionResult<List<Vault>> GetVaultByAccId(string id)
+  public ActionResult<List<Vault>> GetVaultByUserId(string id)
   {
     try
     {
-      List<Vault> vs = _as.GetVaultsByAccId(id);
+      List<Vault> vs = _as.GetVaultsByUserId(id);
       return Ok(vs);
     }
     catch (Exception e)

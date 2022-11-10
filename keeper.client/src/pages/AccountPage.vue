@@ -68,8 +68,8 @@ export default {
       }
     }
     onMounted(() => {
-      AppState.keeps = []
-      AppState.vaults = []
+      // AppState.keeps = []
+      // AppState.vaults = []
       // getAccount();
       getAccountVaults();
     });

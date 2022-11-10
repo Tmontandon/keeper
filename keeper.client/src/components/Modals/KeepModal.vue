@@ -31,9 +31,10 @@
                 <!-- STUB Intractable -->
                 <div v-if="keep.creatorId" class="d-flex justify-content-between mb-1 ">
                   <span class="ms-2"></span>
-                  <span class="me-2 d-flex align-items-center">
+                  <span class="me-2 d-flex align-items-center" data-bs-dismiss="modal">
                     <router-link :to="{ name: 'Profile', params: { id: keep?.creatorId } }">
-                      <img :src="keep?.creator?.picture" alt="CreatorImg" class="rounded-5 pfp selectable">
+                      <img :src="keep?.creator?.picture" alt="CreatorImg" class="rounded-5 pfp selectable"
+                        title="Go To Page">
                     </router-link>
                     <p class="my-auto ms-1">{{ keep?.creator?.name }}</p>
                   </span>

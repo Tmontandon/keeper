@@ -23,7 +23,7 @@
               </div>
               <div class="form-floating mb-3 col-12">
                 <textarea type="text" class="form-control desc" v-model="editable.description" name="description"
-                  placeholder="Description:" maxlength="500"></textarea>
+                  placeholder="Description:" required maxlength="500"></textarea>
                 <label for="name">Description:</label>
               </div>
               <div class="text-end">

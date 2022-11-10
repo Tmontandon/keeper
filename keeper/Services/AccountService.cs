@@ -44,8 +44,8 @@ public class AccountService
     return _repo.GetKeepsByAccId(id);
   }
 
-  internal List<Vault> GetVaultsByAccId(string id)
+  internal List<Vault> GetVaultsByUserId(string id)
   {
-    return _repo.GetVaultsByAccId(id);
+    return _repo.GetVaultsByUserId(id);
   }
 }

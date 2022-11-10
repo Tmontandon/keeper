@@ -75,5 +75,20 @@ public class AccountsRepository
           return v;
         }, new { id }).ToList();
   }
+
+  internal List<Vault> GetVaultsByUserId(string id)
+  {
+    string sql = @"
+    Select v.*, a.* From vaults v
+    Join accounts a On a.id = v.creatorId
+    Where v.creatorId = @id And v.isPrivate = false
+    ;";
+    return _db.Query<Vault, Profile, Vault>(sql, (v, a) =>
+        {
+          v.Creator = a;
+          v.CreatorId = a.Id;
+          return v;
+        }, new { id }).ToList();
+  }
 }
 
