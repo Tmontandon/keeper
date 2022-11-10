@@ -29,10 +29,12 @@
                   <p class="inter gre">{{ keep?.description }}</p>
                 </div>
                 <!-- STUB Intractable -->
-                <div class="d-flex justify-content-between mb-1">
+                <div v-if="keep.creatorId" class="d-flex justify-content-between mb-1 ">
                   <span class="ms-2"></span>
                   <span class="me-2 d-flex align-items-center">
-                    <img :src="keep?.creator?.picture" alt="CreatorImg" class="rounded-5 pfp">
+                    <router-link :to="{ name: 'Profile', params: { id: keep?.creatorId } }">
+                      <img :src="keep?.creator?.picture" alt="CreatorImg" class="rounded-5 pfp selectable">
+                    </router-link>
                     <p class="my-auto ms-1">{{ keep?.creator?.name }}</p>
                   </span>
                 </div>
@@ -69,6 +71,11 @@ export default {
 .pfp {
   height: 7vh;
   border: rgba(0, 0, 0, 0.588) solid 1px;
+}
+
+.pfp:hover {
+  transform: 1.1 !important;
+  transition: 100ms !important;
 }
 
 h2 {

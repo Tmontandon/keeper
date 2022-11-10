@@ -1,7 +1,5 @@
 <template>
   <div class="component">
-    <!-- NOTE Router link to page -->
-    <!-- <router-link :to="{ name: 'Profile', params: { id: vault.creatorId } }"> -->
     <router-link :to="{ name: 'Profile', params: { id: vault.creatorId } }">
       <div class="card elevation-3 m-3 text-dark selectable" :style="{ backgroundImage: `url(${vault?.img})` }">
         <div class="wacky d-flex justify-content-between flex-column ">
