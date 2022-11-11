@@ -5,9 +5,10 @@ public class KeepsService
   private readonly KeepsRepository _kRepo;
   private readonly VaultKeepsRepository _vkRepo;
 
-  public KeepsService(KeepsRepository kRepo)
+  public KeepsService(KeepsRepository kRepo, VaultKeepsRepository vkRepo)
   {
     _kRepo = kRepo;
+    _vkRepo = vkRepo;
   }
 
   internal List<Keep> GetAllKeeps()

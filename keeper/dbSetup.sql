@@ -58,3 +58,7 @@ CREATE TABLE
 -- Delete From  vaultKeeps;
 
 -- drop Table vaults
+
+alter table vaultKeeps
+add
+    constraint uq_vaultKeeps unique(keepId, vaultId);
