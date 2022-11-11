@@ -13,8 +13,8 @@
         <h4>{{ keeps.length }} keeps</h4>
       </span>
     </div>
-    <div class="grid">
-      <VaultKeepCard v-for="k in keeps" :key="k.id" :keep="k" class="" />
+    <div class="row justify-content-evenly p-3 gap-1">
+      <VaultKeepCard v-for="k in keeps" :key="k.id" :keep="k" class="col-sm-3 " />
     </div>
   </div>
 </template>
@@ -83,12 +83,17 @@ export default {
 }
 
 .grid {
-  columns: 4;
+  display: block;
+  columns: 16rem;
+  gap: 1rem;
+  // height: 100vh;
 }
+
 
 @media screen and (max-width: 575px) {
   .grid {
-    columns: 2
+    columns: 2;
+    gap: .3rem;
   }
 }
 </style>

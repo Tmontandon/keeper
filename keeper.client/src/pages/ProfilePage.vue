@@ -8,13 +8,16 @@
       <h1 class="m-2">{{ profile?.name }}</h1>
       <p>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</p>
       <div v-if="vaults[0] || keeps[0]">
-        <h4 v-if="vaults[0]">{{ profile.name }}'s Vaults</h4>
+        <h4 v-if="vaults[0]" class="p-4">{{ profile.name }}'s Vaults</h4>
         <div v-if="vaults[0]" class="p-3 flex-wrap d-flex justify-content-between">
           <VaultCard v-for="v in vaults" :key="v.id" :vault="v" class="col-6" />
         </div>
-        <h4 v-if="keeps[0]">{{ profile.name }}'s Keeps</h4>
-        <div class="p-3 flex-wrap d-flex justify-content-between">
-          <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="col-3" />
+        <h4 v-if="keeps[0]" class="p-4">{{ profile.name }}'s Keeps</h4>
+        <div v-if="keeps.length > 3" class="grid">
+          <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="" />
+        </div>
+        <div v-else class="row p-3">
+          <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="col-md-3" />
         </div>
       </div>
       <div v-else class="p-4">
@@ -122,6 +125,20 @@ export default {
     left: 50%;
     margin-left: -4.5vh;
 
+  }
+}
+
+.grid {
+  display: block;
+  columns: 16rem;
+  gap: 1rem;
+}
+
+
+@media screen and (max-width: 575px) {
+  .grid {
+    columns: 2;
+    gap: .3rem;
   }
 }
 </style>

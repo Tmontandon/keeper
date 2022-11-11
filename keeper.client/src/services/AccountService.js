@@ -3,6 +3,7 @@ import { Account } from '../models/Account.js'
 import { Keep } from '../models/Keep.js'
 import { Vault } from '../models/Vault.js'
 import { logger } from '../utils/Logger'
+import Pop from '../utils/Pop.js'
 import { api } from './AxiosService'
 
 class AccountService {
@@ -29,7 +30,7 @@ class AccountService {
       const res = await api.put(`/account`, data)
       AppState.account = new Account(res.data)
     } catch (error) {
-      logger.log(error)
+      Pop.error("Data was invaild!")
     }
   }
   //#endregion 

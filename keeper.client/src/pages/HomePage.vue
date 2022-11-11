@@ -1,8 +1,12 @@
 <template>
   <div class="con">
-    <div class="grid">
+    <div v-if="keeps[0]" class="grid mt-2 mx-3">
       <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="item" />
     </div>
+    <div v-else class="mdi-spin text-center">
+      <i class="mdi-spin mdi mdi-loading fs-1"></i>
+    </div>
+
   </div>
 
 </template>
@@ -27,6 +31,7 @@ export default {
       }
     }
     onMounted(() => {
+      AppState.keeps = []
       getAllKeeps();
     });
     return {
@@ -39,26 +44,16 @@ export default {
 
 <style scoped lang="scss">
 .grid {
-  columns: 4;
-  // column-gap: 1rem;
+  display: block;
+  columns: 16rem;
+  gap: 1rem;
 }
 
-// .item {
-//   width: 150px;
-//   background: #EC985A;
-//   color: white;
-//   // margin: 0 1rem 1rem 0;
-//   display: inline-block;
-//   // width: 100%;
-//   text-align: center;
-//   font-family: system-ui;
-//   font-weight: 900;
-//   font-size: 2rem;
-// }
 
 @media screen and (max-width: 575px) {
   .grid {
-    columns: 2
+    columns: 2;
+    gap: .3rem;
   }
 }
 

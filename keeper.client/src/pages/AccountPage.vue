@@ -7,16 +7,16 @@
         <button class="edit btn btn-dark-outline bg-secondary" data-bs-toggle="modal" data-bs-target="#EditAcc">Edit
           Details</button>
       </div>
-      <h1 class="m-2">{{ account?.name }}</h1>
+      <h1 class="m-4">{{ account?.name }}</h1>
       <p>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</p>
       <div v-if="vaults[0] || keeps[0]">
-        <h4 v-if="vaults[0]">My Vaults</h4>
+        <h4 v-if="vaults[0]" class="ps-3">My Vaults</h4>
         <div v-if="vaults[0]" class="p-3 flex-wrap d-flex justify-content-between">
           <VaultCard v-for="v in vaults" :key="v.id" :vault="v" class="col-6" />
         </div>
-        <h4 v-if="keeps[0]">My Keeps</h4>
-        <div class="p-3 flex-wrap d-flex justify-content-between">
-          <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="col-3" />
+        <h4 v-if="keeps[0]" class="ps-3">My Keeps</h4>
+        <div class="grid">
+          <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="" />
         </div>
       </div>
       <div v-else class="p-4">
@@ -100,6 +100,7 @@ export default {
 
 .pfp {
   height: 9vh;
+  max-width: 6vw;
   border: rgba(0, 0, 0, 0.588) solid 1px;
   position: absolute;
   top: 44%;
@@ -114,10 +115,24 @@ export default {
   left: 74%;
 }
 
+.grid {
+  display: block;
+  columns: 16rem;
+  gap: 1rem;
+}
+
+
+@media screen and (max-width: 575px) {
+  .grid {
+    columns: 2;
+    gap: .3rem;
+  }
+}
 
 @media screen and (max-width: 575px) {
   .pfp {
-    height: 9vh;
+    height: 6vh;
+    max-width: 10vh;
     border: rgba(0, 0, 0, 0.588) solid 1px;
     position: absolute;
     top: 34%;

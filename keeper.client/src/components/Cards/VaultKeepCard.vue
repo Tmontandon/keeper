@@ -1,5 +1,5 @@
 <template>
-  <div @click="selectKeep()" class=" card elevation-3 m-3 text-dark selectable"
+  <div @click="selectKeep()" class=" card elevation-3 my-3 text-dark selectable"
     :style="{ backgroundImage: `url(${keep?.img})` }">
     <i @click.self.stop="deleteKeep()" v-if="keep.creatorId == account.id"
       class="mdi mdi-delete-circle text-danger fs-4 text-shadow" title="Delete Keep"></i>
