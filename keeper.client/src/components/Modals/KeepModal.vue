@@ -77,6 +77,7 @@ import { useRoute } from 'vue-router';
 import { AppState } from '../../AppState.js';
 import { keepsService } from '../../services/KeepsService.js';
 import Pop from '../../utils/Pop.js';
+import { logger } from '../../utils/Logger.js';
 
 export default {
   setup() {
@@ -98,8 +99,11 @@ export default {
       async vaultKeep() {
         try {
           await keepsService.vaultKeep(editable.value, AppState.selectedKeep.id)
+          AppState.selectedKeep.kept++
+          Pop.success("Keep vaulted 🎉")
         } catch (error) {
-          Pop.error(error)
+          Pop.error("Youve probably already vaulted this 😎")
+          logger.log(error)
         }
       }
     }

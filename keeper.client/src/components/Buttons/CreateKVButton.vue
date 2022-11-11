@@ -32,7 +32,7 @@ import { AppState } from '../../AppState.js';
 export default {
   setup() {
     onMounted(() => {
-      console.log(AppState.user);
+      // console.log(AppState.user);
     })
     return {
       account: computed(() => AppState.account)
