@@ -57,9 +57,8 @@
                       </button>
                       <form class="dropdown-menu p-4">
                         <div class="mb-3">
-                          <select v-for="v in vaults" class="form-select form-select-sm bg-light" required
-                            v-model="editable">
-                            <option :value="v.id">{{ v.name }}</option>
+                          <select class="form-select form-select-sm bg-light" required v-model="editable">
+                            <option v-for="v in vaults" :value="v.id">{{ v.name }}</option>
                           </select>
                         </div>
                         <button @click="vaultKeep()" class="btn bg-primary" data-bs-dismiss="modal">Vault</button>

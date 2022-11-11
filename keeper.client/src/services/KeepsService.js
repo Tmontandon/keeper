@@ -28,7 +28,7 @@ class KeepsService {
   async unvaultKeep(vaultKeepId, keepId) {
     await api.delete(`/api/vaultkeeps/${vaultKeepId}`)
     // console.log("beofre", AppState.keeps);
-    AppState.keeps = AppState.keeps.filter(k => k.id !== keepId)
+    AppState.keeps = AppState.keeps.filter(k => k.vaultKeepId !== vaultKeepId)
     // console.log("after", AppState.keeps);
     AppState.selectedKeep = {}
   }
