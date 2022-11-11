@@ -27,9 +27,10 @@
                   <span>/ 500</span>
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    title="Close"></button>
                   <button type="submit" class="btn bg-primary lighten-10 text-dark" data-bs-dismiss="modal"
-                    aria-label="Submit">Post
+                    aria-label="Post">Post
                     <span class="mdi mdi-send"></span></button>
                 </div>
               </form>

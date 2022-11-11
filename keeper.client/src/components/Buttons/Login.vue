@@ -1,14 +1,12 @@
 <template>
   <span class="navbar-text p-0 oxy">
     <button class="btn bg-primary border-dark border-3 selectable text-light text-uppercase my-2 my-lg-0" @click="login"
-      v-if="!user.isAuthenticated">
+      v-if="!user.isAuthenticated" aria-label="Login">
       Login
     </button>
     <div v-else>
       <div class="dropdown dropstart my-2 my-lg-0">
-        <!-- btn bg-primary dropdown-toggle text-light m-2 fs-6 py-3 px-2 rounded-5 -->
-        <div type="button" class="rounded-5 border-0  no-select" data-bs-toggle="dropdown" aria-expanded="false"
-          title="Options">
+        <div type="button" class="rounded-5 border-0  no-select" data-bs-toggle="dropdown" title="Options">
           <div v-if="account.picture || user.picture">
             <img :src="account.picture || user.picture" alt="account photo" height=""
               class="rounded-5 vh bg-light text-light" />

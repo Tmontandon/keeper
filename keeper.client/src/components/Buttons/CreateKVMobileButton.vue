@@ -9,11 +9,11 @@
       <ul class="dropdown-menu bg-secondary no-select text-center p-0 elevation-3">
         <div v-if="!account.id">Login To Create</div>
         <div v-else class="list-group">
-          <li data-bs-toggle="modal" data-bs-target="#CreateKeep"
+          <li data-bs-toggle="modal" data-bs-target="#CreateKeep" aria-label="Open New Keep Form"
             class="selectable list-group-item dropdown-item list-group-item-action rounded-top no-select text-shadow-dark text-light">
             New Keep
           </li>
-          <li data-bs-toggle="modal" data-bs-target="#CreateVault"
+          <li data-bs-toggle="modal" data-bs-target="#CreateVault" aria-label="Open New Vault Form"
             class="selectable list-group-item dropdown-item list-group-item-action no-select text-shadow-dark text-light">
             New Vault
           </li>

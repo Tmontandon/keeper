@@ -3,7 +3,8 @@
     <!-- BUTTON & DROPDOWN -->
     <div class="dropdown dropend m-0 p-0">
       <button class="btn bg-primary m-0 dropdown-toggle text-light m-2 fs-6 py-3 px-2 rounded-5 text-shadow-dark"
-        type="button" data-bs-toggle="dropdown" aria-expanded="false">Post</button>
+        type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open Post Options"
+        title="Post">Post</button>
       <ul class="dropdown-menu bg-secondary no-select text-center p-0 elevation-3">
         <div v-if="!account.id">Login To Post!</div>
         <div v-else class="list-group">

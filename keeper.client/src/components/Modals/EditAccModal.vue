@@ -18,7 +18,7 @@
                   class="form-control">
               </div>
               <div>
-                <button type="submit" class="btn btn-primary ">Save</button>
+                <button type="submit" class="btn btn-primary" aria-label="Save Changes">Save New Info</button>
               </div>
             </form>
           </div>

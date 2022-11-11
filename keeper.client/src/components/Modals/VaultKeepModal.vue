@@ -32,7 +32,8 @@
                 <div v-if="keep.creatorId" class="d-flex justify-content-between mb-1 ">
                   <!-- NOTE IF YOURE IN VAULT PAGE -->
                   <span>
-                    <div @click="unvaultKeep()" class="btn bg-t text-light text-shadow-dark" data-bs-dismiss="modal">
+                    <div @click="unvaultKeep()" class="btn bg-t text-light text-shadow-dark" data-bs-dismiss="modal"
+                      aria-label="Remove Keep From Modal">
                       Unvault</div>
                   </span>
                   <span class="me-2 d-flex align-items-center" data-bs-dismiss="modal">

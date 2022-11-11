@@ -34,7 +34,8 @@
                   <span class="ms-2">
                     <div class="dropdown" v-if="keep.name">
                       <button type="button" class="btn bg-t dropdown-toggle text-light text-shadow-dark"
-                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
+                        aria-label="Vault Keep">
                         Vault This Keep
                       </button>
                       <form class="dropdown-menu p-4">
@@ -43,7 +44,8 @@
                             <option v-for="v in vaults" :value="v.id">{{ v.name }}</option>
                           </select>
                         </div>
-                        <button @click="vaultKeep()" class="btn bg-primary" data-bs-dismiss="modal">Vault</button>
+                        <button @click="vaultKeep()" class="btn bg-primary" data-bs-dismiss="modal"
+                          title="Save To Vault" aria-label="Save To Vault">Vault</button>
                       </form>
                     </div>
                   </span>
