@@ -27,6 +27,7 @@ import { useRoute } from 'vue-router';
 import { AppState } from '../AppState.js';
 // import KeepCard from '../components/Cards/KeepCard.vue';
 import VaultKeepCard from '../components/Cards/VaultKeepCard.vue';
+import { router } from '../router.js';
 import { vaultsService } from '../services/VaultsService.js';
 import Pop from '../utils/Pop.js';
 
@@ -38,7 +39,9 @@ export default {
         await vaultsService.getSelectedVault(route.params.id);
       }
       catch (error) {
-        Pop.error(error);
+        router.push({ name: 'Home' })
+        Pop.toast('you are very much not allowed to see private vaults >:(')
+        AppState.selectedVault = {}
       }
     }
     async function getVaultKeeps() {

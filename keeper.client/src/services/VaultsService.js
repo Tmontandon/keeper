@@ -21,11 +21,11 @@ class VaultsService {
     const res = await api.get(`api/vaults/${id}`)
     AppState.selectedVault = new Vault(res.data)
     // AppState.account = await api.get('/account')
-    if (AppState.selectedVault.isPrivate && AppState.selectedVault.creatorId != AppState.account.id) {
-      router.push({ name: 'Home' })
-      Pop.toast('you are very much not allowed to see private vaults >:(')
-      AppState.selectedVault = {}
-    }
+    // if (AppState.selectedVault.isPrivate && AppState.selectedVault.creatorId != AppState.account.id) {
+    //   router.push({ name: 'Home' })
+    //   Pop.toast('you are very much not allowed to see private vaults >:(')
+    //   AppState.selectedVault = {}
+    // }
   }
   async getVaultKeeps(id) {
     const res = await api.get(`api/vaults/${id}/keeps`)
