@@ -93,4 +93,13 @@ public class KeepsRepository
     ).ToList();
   }
 
+  internal void changeKept(Keep k)
+  {
+    string sql = @"
+    update keeps set
+    kept = @Kept
+    where id = @Id
+    ;";
+    _db.Execute(sql, k);
+  }
 }

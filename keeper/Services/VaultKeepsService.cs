@@ -4,11 +4,13 @@ public class VaultKeepsService
 {
   private readonly VaultKeepsRepository _vkr;
   private readonly VaultsService _vs;
+  private readonly KeepsService _ks;
 
-  public VaultKeepsService(VaultKeepsRepository vkr, VaultsService vs)
+  public VaultKeepsService(VaultKeepsRepository vkr, VaultsService vs, KeepsService ks)
   {
     _vkr = vkr;
     _vs = vs;
+    _ks = ks;
   }
 
   internal VaultKeep GetVKById(int Id)
@@ -40,6 +42,7 @@ public class VaultKeepsService
     {
       throw new Exception("Hey! This isn't yours to delete!");
     }
+    _ks.lowerKeptCount(vk.KeepId);
     _vkr.DeleteVK(id);
   }
 

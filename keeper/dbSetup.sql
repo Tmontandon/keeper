@@ -21,6 +21,7 @@ CREATE TABLE
         description mediumtext Not Null,
         img mediumtext Not Null,
         views INT DEFAULT 0 check(views >= 0),
+        kept INT DEFAULT 0 check(kept >= 0),
         Foreign Key (creatorId) REFERENCES accounts(id)
     ) default charset utf8 COMMENT '';
 
@@ -55,3 +56,5 @@ CREATE TABLE
 -- Delete From  vaults;
 
 -- Delete From  vaultKeeps;
+
+-- drop Table vaults

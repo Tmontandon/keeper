@@ -32,24 +32,6 @@
                 <div v-if="keep.creatorId" class="d-flex justify-content-between mb-1 ">
                   <!-- NOTE IF YOURE NOT IN VAULT PAGE -->
                   <span class="ms-2">
-                    <!-- <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Your Vaults
-                      </button>
-                      <ul class="dropdown-menu dropdown-menu-dark">
-                        <li>
-                          <h6 class="dropdown-header">Select A Vault</h6>
-                        </li>
-                        <div class="form-group p-1">
-                          <select v-for="v in vaults" class="form-select form-select-sm bg-light" required
-                            v-model="editable.id">
-                            <option class="dropdown-item" :value="v.id">{{ v.name }}</option>
-                          </select>
-                        </div>
-                      </ul>
-                    </div>
-                    <button class="btn bg-primary" @click="vaultKeep(editable.vault)">Vault</button> -->
                     <div class="dropdown" v-if="keep.name">
                       <button type="button" class="btn bg-t dropdown-toggle text-light text-shadow-dark"
                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">

@@ -3,6 +3,7 @@ namespace keeper.Services;
 public class KeepsService
 {
   private readonly KeepsRepository _kRepo;
+  private readonly VaultKeepsRepository _vkRepo;
 
   public KeepsService(KeepsRepository kRepo)
   {
@@ -52,5 +53,19 @@ public class KeepsService
     }
     _kRepo.DeleteKeep(DKeep);
     return DKeep;
+  }
+
+  internal void upKeptCount(int keepId)
+  {
+    Keep k = GetKeepById(keepId);
+    k.Kept++;
+    _kRepo.changeKept(k);
+  }
+
+  internal void lowerKeptCount(int kId)
+  {
+    Keep k = GetKeepById(kId);
+    k.Kept--;
+    _kRepo.changeKept(k);
   }
 }
