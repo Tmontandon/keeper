@@ -89,8 +89,9 @@ export default {
       vaults: computed(() => AppState.accountVaults),
       async unvaultKeep() {
         try {
-          // debugger
-          await keepsService.unvaultKeep(AppState.selectedKeep.vaultKeepId, AppState.selectedKeep.id)
+          if (await Pop.confirm("Unvault this keep?")) {
+            await keepsService.unvaultKeep(AppState.selectedKeep.vaultKeepId, AppState.selectedKeep.id)
+          }
         } catch (error) {
           Pop.error(error)
         }
