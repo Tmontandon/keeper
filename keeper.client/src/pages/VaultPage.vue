@@ -14,7 +14,7 @@
       </span>
     </div>
     <div class="row">
-      <KeepCard v-for="k in   keeps" :key="k.id" :keep="k" class="col-3" />
+      <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="col-3" />
     </div>
   </div>
 </template>
@@ -49,6 +49,9 @@ export default {
       }
     }
     onMounted(() => {
+      AppState.keeps = []
+      AppState.selectedVault = {}
+
     });
 
     // TODO I dont know how to make account load before these go through

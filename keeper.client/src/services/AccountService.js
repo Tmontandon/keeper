@@ -23,6 +23,15 @@ class AccountService {
       logger.log(error)
     }
   }
+
+  async editAccount(data) {
+    try {
+      const res = await api.put(`/account`, data)
+      AppState.account = new Account(res.data)
+    } catch (error) {
+      logger.log(error)
+    }
+  }
   //#endregion 
 
   //#region Profile Reqs

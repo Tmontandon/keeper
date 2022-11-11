@@ -4,6 +4,8 @@
       <div class="cover-img my-4 rounded text-center"
         :style="account.coverImg ? { backgroundImage: `url(${account.coverImg})` } : { backgroundImage: `url(//thiscatdoesnotexist.com)` }">
         <img v-if="account.picture" :src="account?.picture" alt="Account Pfp" class="img-fluid pfp rounded-5" />
+        <button class="edit btn btn-dark-outline bg-secondary" data-bs-toggle="modal" data-bs-target="#EditAcc">Edit
+          Details</button>
       </div>
       <h1 class="m-2">{{ account?.name }}</h1>
       <p>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</p>
@@ -105,6 +107,13 @@ export default {
   margin-left: -4.5vh;
 
 }
+
+.edit {
+  position: absolute;
+  top: 49%;
+  left: 74%;
+}
+
 
 @media screen and (max-width: 575px) {
   .pfp {
