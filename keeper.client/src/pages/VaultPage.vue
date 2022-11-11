@@ -13,8 +13,8 @@
         <h4>{{ keeps.length }} keeps</h4>
       </span>
     </div>
-    <div class="row">
-      <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="col-3" />
+    <div class="grid">
+      <VaultKeepCard v-for="k in keeps" :key="k.id" :keep="k" class="" />
     </div>
   </div>
 </template>
@@ -25,7 +25,8 @@ import { computed } from '@vue/reactivity';
 import { onMounted, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState.js';
-import KeepCard from '../components/Cards/KeepCard.vue';
+// import KeepCard from '../components/Cards/KeepCard.vue';
+import VaultKeepCard from '../components/Cards/VaultKeepCard.vue';
 import { vaultsService } from '../services/VaultsService.js';
 import Pop from '../utils/Pop.js';
 
@@ -64,7 +65,7 @@ export default {
       keeps: computed(() => AppState.keeps)
     };
   },
-  components: { KeepCard }
+  components: { VaultKeepCard }
 }
 </script>
 
@@ -76,5 +77,15 @@ export default {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.grid {
+  columns: 4;
+}
+
+@media screen and (max-width: 575px) {
+  .grid {
+    columns: 2
+  }
 }
 </style>

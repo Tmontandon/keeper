@@ -1,6 +1,6 @@
 <template>
   <div class="component">
-    <div class="modal bg-glass" id="keepModal" tabindex="-1" aria-labelledby="KeepModal" aria-hidden="true">
+    <div class="modal bg-glass" id="vaultKeepModal" tabindex="-1" aria-labelledby="KeepModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-xl">
         <div class="modal-content bg-secondary">
           <div class="row">
@@ -30,22 +30,10 @@
                 </div>
                 <!-- STUB Intractable -->
                 <div v-if="keep.creatorId" class="d-flex justify-content-between mb-1 ">
-                  <!-- NOTE IF YOURE NOT IN VAULT PAGE -->
-                  <span class="ms-2">
-                    <div class="dropdown" v-if="keep.name">
-                      <button type="button" class="btn bg-t dropdown-toggle text-light text-shadow-dark"
-                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        Vault This Keep
-                      </button>
-                      <form class="dropdown-menu p-4">
-                        <div class="mb-3">
-                          <select class="form-select form-select-sm bg-light" required v-model="editable">
-                            <option v-for="v in vaults" :value="v.id">{{ v.name }}</option>
-                          </select>
-                        </div>
-                        <button @click="vaultKeep()" class="btn bg-primary" data-bs-dismiss="modal">Vault</button>
-                      </form>
-                    </div>
+                  <!-- NOTE IF YOURE IN VAULT PAGE -->
+                  <span>
+                    <div @click="unvaultKeep()" class="btn bg-t text-light text-shadow-dark" data-bs-dismiss="modal">
+                      Unvault</div>
                   </span>
                   <span class="me-2 d-flex align-items-center" data-bs-dismiss="modal">
                     <router-link :to="{ name: 'Profile', params: { id: keep?.creatorId } }">
@@ -72,7 +60,6 @@ import { useRoute } from 'vue-router';
 import { AppState } from '../../AppState.js';
 import { keepsService } from '../../services/KeepsService.js';
 import Pop from '../../utils/Pop.js';
-import { logger } from '../../utils/Logger.js';
 
 export default {
   setup() {
@@ -82,18 +69,16 @@ export default {
       editable,
       keep: computed(() => AppState.selectedKeep),
       vaults: computed(() => AppState.accountVaults),
-
-
-      async vaultKeep() {
+      async unvaultKeep() {
         try {
-          await keepsService.vaultKeep(editable.value, AppState.selectedKeep.id)
-          AppState.selectedKeep.kept++
-          Pop.success("Keep vaulted 🎉")
+          if (await Pop.confirm("Unvault this keep?")) {
+            await keepsService.unvaultKeep(AppState.selectedKeep.vaultKeepId, AppState.selectedKeep.id)
+          }
         } catch (error) {
-          Pop.error("Youve probably already vaulted this 😎")
-          logger.log(error)
+          Pop.error(error)
         }
-      }
+      },
+
     }
   }
 }

@@ -3,7 +3,8 @@
     :style="{ backgroundImage: `url(${keep?.img})` }">
     <i @click.self.stop="deleteKeep()" v-if="keep.creatorId == account.id"
       class="mdi mdi-delete-circle text-danger fs-4 text-shadow" title="Delete Keep"></i>
-    <div data-bs-toggle="modal" data-bs-target="#keepModal" class="wacky d-flex justify-content-between flex-column ">
+    <div data-bs-toggle="modal" data-bs-target="#vaultKeepModal"
+      class="wacky d-flex justify-content-between flex-column ">
       <div></div>
       <div class="d-flex flex-wrap justify-content-between align-items-center">
         <span class="m-2 text-light text-shadow-dark marko">

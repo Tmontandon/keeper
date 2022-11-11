@@ -1,7 +1,7 @@
 <template>
-  <div class="text-center">
-    <div class="p-3 flex-wrap d-flex justify-content-around">
-      <KeepCard v-for="k in keeps" :key="k.id" :keep="k" />
+  <div class="con">
+    <div class="grid">
+      <KeepCard v-for="k in keeps" :key="k.id" :keep="k" class="" />
     </div>
   </div>
 
@@ -38,5 +38,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.grid {
+  columns: 4;
+}
 
+@media screen and (max-width: 575px) {
+  .grid {
+    columns: 2
+  }
+}
+
+// TODO How can I use multiple media queries
+// @media screen and (max-width: 800px) {
+//   .grid {
+//     columns: 3
+//   }
+// }
 </style>

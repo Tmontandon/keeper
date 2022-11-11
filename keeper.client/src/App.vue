@@ -9,6 +9,7 @@
     <CreateKeepModal />
     <CreateVaultModal />
     <EditAccModal />
+    <VaultKeepModal />
   </main>
   <!-- NOTE maybe I can go here to put in component for thing -->
   <footer class="d-sm-none sticky-bottom bg-light">
@@ -25,6 +26,7 @@ import CreateKeepModal from './components/Modals/CreateKeepModal.vue'
 import CreateVaultModal from './components/Modals/CreateVaultModal.vue'
 import EditAccModal from './components/Modals/EditAccModal.vue'
 import KeepModal from './components/Modals/KeepModal.vue'
+import VaultKeepModal from './components/Modals/VaultKeepModal.vue'
 import Navbar from './components/Navbar.vue'
 
 export default {
@@ -33,7 +35,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, FootBar, KeepModal, CreateKeepModal, CreateVaultModal, EditAccModal }
+  components: { Navbar, FootBar, KeepModal, CreateKeepModal, CreateVaultModal, EditAccModal, VaultKeepModal }
 }
 </script>
 <style lang="scss">

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "masonry-layout": "^4.2.2",
+    "vue-masonry": "^0.16.0"
+  }
+}
