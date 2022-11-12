@@ -29,8 +29,7 @@
                   <p class="inter gre">{{ keep?.description }}</p>
                 </div>
                 <!-- STUB Intractable -->
-                <div v-if="keep.creatorId" class="d-flex justify-content-between mb-1 ">
-                  <!-- NOTE IF YOURE IN VAULT PAGE -->
+                <div v-if="keep.creatorId == account.id" class="d-flex justify-content-between mb-1 ">
                   <span>
                     <div @click="unvaultKeep()" class="btn bg-t text-light text-shadow-dark" data-bs-dismiss="modal"
                       aria-label="Remove Keep From Modal">
@@ -44,6 +43,7 @@
                     <p class="my-auto ms-1">{{ keep?.creator?.name }}</p>
                   </span>
                 </div>
+                <div v-else></div>
               </div>
             </div>
           </div>
@@ -68,6 +68,7 @@ export default {
     const editable = ref("")
     return {
       editable,
+      account: computed(() => AppState.account),
       keep: computed(() => AppState.selectedKeep),
       vaults: computed(() => AppState.accountVaults),
       async unvaultKeep() {

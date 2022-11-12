@@ -3,8 +3,8 @@
     <div class="about  d-flex flex-column align-items-center">
       <div class="cover-img my-4 rounded text-center"
         :style="account.coverImg ? { backgroundImage: `url(${account.coverImg})` } : { backgroundImage: `url(//thiscatdoesnotexist.com)` }">
-        <img v-if="account.picture" :src="account?.picture" alt="Account Pfp" class="img-fluid pfp rounded-5" />
-        <button class="edit btn btn-dark-outline bg-secondary" data-bs-toggle="modal" data-bs-target="#EditAcc"
+        <img v-if="account.picture" :src="account?.picture" alt="Account Pfp" class="pfp rounded-5" />
+        <button class="edit btn btn-dark-outline bg-secondary me-2" data-bs-toggle="modal" data-bs-target="#EditAcc"
           aria-label="Open Edit Account Form">Edit
           Details</button>
       </div>

@@ -18,7 +18,8 @@
                   class="form-control">
               </div>
               <div>
-                <button type="submit" class="btn btn-primary" aria-label="Save Changes">Save New Info</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Save Changes">Save New
+                  Info</button>
               </div>
             </form>
           </div>
@@ -30,13 +31,19 @@
 
 
 <script>
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
+import { AppState } from '../../AppState.js';
 import { accountService } from '../../services/AccountService.js';
 import Pop from '../../utils/Pop.js';
 
 export default {
   setup() {
     const acc = ref({})
+    watchEffect(() => {
+      acc.value = { ...AppState.account }
+    })
+
+
     return {
       acc,
       async editAccSubmit() {

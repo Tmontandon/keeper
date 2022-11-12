@@ -73,8 +73,6 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  // height: auto;
-  // width: 40vw;
   background-position: center;
   background-size: cover;
 }

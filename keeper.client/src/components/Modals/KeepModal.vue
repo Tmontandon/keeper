@@ -28,11 +28,10 @@
                   <h2 class="marko text-center ">{{ keep?.name }}</h2>
                   <p class="inter gre">{{ keep?.description }}</p>
                 </div>
-                <!-- STUB Intractable -->
+                <!-- STUB Intractables -->
                 <div v-if="keep.creatorId" class="d-flex justify-content-between mb-1 ">
-                  <!-- NOTE IF YOURE NOT IN VAULT PAGE -->
                   <span class="ms-2">
-                    <div class="dropdown" v-if="keep.name">
+                    <div class="dropdown" v-if="keep.name && account">
                       <button type="button" class="btn bg-t dropdown-toggle text-light text-shadow-dark"
                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
                         aria-label="Vault Keep">
@@ -45,7 +44,8 @@
                           </select>
                         </div>
                         <button @click="vaultKeep()" class="btn bg-primary" data-bs-dismiss="modal"
-                          title="Save To Vault" aria-label="Save To Vault">Vault</button>
+                          title="Save To Vault" aria-label="Save To Vault">Vault
+                        </button>
                       </form>
                     </div>
                   </span>
@@ -84,7 +84,7 @@ export default {
       editable,
       keep: computed(() => AppState.selectedKeep),
       vaults: computed(() => AppState.accountVaults),
-
+      account: computed(() => AppState.account),
 
       async vaultKeep() {
         try {

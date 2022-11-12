@@ -11,8 +11,6 @@
           {{ keep?.name }}
         </span>
         <span class="m-2">
-          <!-- NOTE Make router link to profile page of creator -->
-          <!-- NOTE will have to position absolute or @click.prevent or sum idk -->
           <img :src="keep?.creator?.picture" alt="CreatorPfp" class="img-fluid pfp rounded-5 "
             :title="keep?.creator?.name">
         </span>
