@@ -35,7 +35,7 @@
                       aria-label="Remove Keep From Modal">
                       Unvault</div>
                   </span>
-                  <span class="me-2 d-flex align-items-center" data-bs-dismiss="modal">
+                  <span v-if="keep.creatorId" class="me-2 d-flex align-items-center" data-bs-dismiss="modal">
                     <router-link :to="{ name: 'Profile', params: { id: keep?.creatorId } }">
                       <img :src="keep?.creator?.picture" alt="CreatorImg" class="rounded-5 pfp selectable"
                         title="Go To Page">
